@@ -53,8 +53,8 @@
 
   .hero-art-wrap{perspective:1200px}
   .hero-art-inner{transition:transform .25s ease-out;transform-style:preserve-3d;will-change:transform}
-  .hero-sky-zoom{position:absolute;inset:0}
-  .hero-sky-scroll{position:absolute;inset:0;display:flex;width:200%;animation:heroSkyScroll 95s linear infinite;will-change:transform}
+  .hero-sky-scroll{position:absolute;inset:0;width:200%;animation:heroSkyScroll 95s linear infinite;will-change:transform}
+  .hero-sky-zoom{position:absolute;inset:0;display:flex}
   .hero-skyline-img{width:50%;height:100%;object-fit:cover;object-position:center bottom;opacity:.55;flex-shrink:0;display:block}
   @keyframes heroSkyScroll{from{transform:translateX(-50%)}to{transform:translateX(0)}}
   .star-field{position:absolute;inset:0;pointer-events:none;z-index:0}
@@ -184,9 +184,9 @@
   <!-- HERO -->
   <div id="heroZone" style="position:relative;overflow:hidden">
     <div class="hero-art-wrap" style="position:absolute;inset:0;pointer-events:none">
-      <div class="hero-sky-zoom">
-        <div class="hero-sky-scroll" id="heroSkyScroll">
-          <div class="star-field" id="starField" aria-hidden="true"></div>
+      <div class="hero-sky-scroll" id="heroSkyScroll">
+        <div class="star-field" id="starField" aria-hidden="true"></div>
+        <div class="hero-sky-zoom">
           <img class="hero-skyline-img" src="hero-skyline.png" alt="" aria-hidden="true">
           <img class="hero-skyline-img" src="hero-skyline.png" alt="" aria-hidden="true">
         </div>
