@@ -53,7 +53,8 @@
 
   .hero-art-wrap{perspective:1200px}
   .hero-art-inner{transition:transform .25s ease-out;transform-style:preserve-3d;will-change:transform}
-  .hero-sky-scroll{position:absolute;inset:0;display:flex;width:200%;animation:heroSkyScroll 55s linear infinite;will-change:transform}
+  .hero-sky-zoom{position:absolute;inset:0}
+  .hero-sky-scroll{position:absolute;inset:0;display:flex;width:200%;animation:heroSkyScroll 95s linear infinite;will-change:transform}
   .hero-skyline-img{width:50%;height:100%;object-fit:cover;object-position:center bottom;opacity:.55;flex-shrink:0;display:block}
   @keyframes heroSkyScroll{from{transform:translateX(-50%)}to{transform:translateX(0)}}
   .star-field{position:absolute;inset:0;pointer-events:none;z-index:0}
@@ -130,6 +131,7 @@
     .fleet-row{gap:26px !important}
     .hero-car-pos{width:min(420px,72%) !important}
     .hero-skyline-img{object-fit:contain !important;object-position:center bottom !important;opacity:.4 !important}
+    .hero-sky-zoom{transform:scale(1.35);transform-origin:center bottom}
   }
   @media (prefers-reduced-motion:reduce){
     .aurora-blob,.fab-main,.hero-sky-scroll{animation:none !important}
@@ -182,10 +184,12 @@
   <!-- HERO -->
   <div id="heroZone" style="position:relative;overflow:hidden">
     <div class="hero-art-wrap" style="position:absolute;inset:0;pointer-events:none">
-      <div class="hero-sky-scroll" id="heroSkyScroll">
-        <div class="star-field" id="starField" aria-hidden="true"></div>
-        <img class="hero-skyline-img" src="hero-skyline.png" alt="" aria-hidden="true">
-        <img class="hero-skyline-img" src="hero-skyline.png" alt="" aria-hidden="true">
+      <div class="hero-sky-zoom">
+        <div class="hero-sky-scroll" id="heroSkyScroll">
+          <div class="star-field" id="starField" aria-hidden="true"></div>
+          <img class="hero-skyline-img" src="hero-skyline.png" alt="" aria-hidden="true">
+          <img class="hero-skyline-img" src="hero-skyline.png" alt="" aria-hidden="true">
+        </div>
       </div>
       <div class="hero-car-pos" style="position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(520px,66%)">
         <div class="hero-art-inner" id="heroArtInner" style="width:100%">
