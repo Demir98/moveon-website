@@ -56,7 +56,7 @@
   .hero-sky-scroll{position:absolute;inset:0;display:flex;width:200%;animation:heroSkyScroll 55s linear infinite;will-change:transform}
   .hero-skyline-img{width:50%;height:100%;object-fit:cover;object-position:center bottom;opacity:.55;flex-shrink:0;display:block}
   @keyframes heroSkyScroll{from{transform:translateX(-50%)}to{transform:translateX(0)}}
-  .star-field{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+  .star-field{position:absolute;inset:0;pointer-events:none;z-index:0}
   .star{position:absolute;border-radius:50%;background:#EAF0F6;animation:starTwinkle ease-in-out infinite}
   @keyframes starTwinkle{0%,100%{opacity:.12}50%{opacity:.7}}
 
@@ -182,8 +182,8 @@
   <!-- HERO -->
   <div id="heroZone" style="position:relative;overflow:hidden">
     <div class="hero-art-wrap" style="position:absolute;inset:0;pointer-events:none">
-      <div class="star-field" id="starField" aria-hidden="true"></div>
       <div class="hero-sky-scroll" id="heroSkyScroll">
+        <div class="star-field" id="starField" aria-hidden="true"></div>
         <img class="hero-skyline-img" src="hero-skyline.png" alt="" aria-hidden="true">
         <img class="hero-skyline-img" src="hero-skyline.png" alt="" aria-hidden="true">
       </div>
@@ -736,22 +736,29 @@
   (function(){
     var field = document.getElementById('starField');
     if (!field) return;
+    // star-field now lives inside the scrolling (double-width) sky track, so it
+    // travels together with the buildings. Each star is placed twice — once in
+    // each building copy's half of the track — so the loop stays seamless.
     var count = 12;
-    for (var i = 0; i < count; i++){
+    function makeStar(leftPct, topPct, size, dur, delay){
       var s = document.createElement('div');
       s.className = 'star';
-      var top = Math.random() * 14;        // stay in the plain sky strip, above the building silhouettes
-      var left = Math.random() * 100;
-      var size = (Math.random() * 1.6 + 0.8).toFixed(1);
-      var dur = (Math.random() * 4 + 3).toFixed(1);
-      var delay = (Math.random() * 5).toFixed(1);
-      s.style.top = top + '%';
-      s.style.left = left + '%';
+      s.style.top = topPct + '%';
+      s.style.left = leftPct + '%';
       s.style.width = size + 'px';
       s.style.height = size + 'px';
       s.style.animationDuration = dur + 's';
       s.style.animationDelay = delay + 's';
       field.appendChild(s);
+    }
+    for (var i = 0; i < count; i++){
+      var top = Math.random() * 14;         // stay in the plain sky strip, above the building silhouettes
+      var left = Math.random() * 50;        // one building copy's share of the double-width track
+      var size = (Math.random() * 1.6 + 0.8).toFixed(1);
+      var dur = (Math.random() * 4 + 3).toFixed(1);
+      var delay = (Math.random() * 5).toFixed(1);
+      makeStar(left, top, size, dur, delay);
+      makeStar(left + 50, top, size, dur, delay);
     }
   })();
 
