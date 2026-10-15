@@ -35,18 +35,24 @@
   .bg-flat{position:fixed;inset:0;z-index:0;background:linear-gradient(180deg,#0A1826 0%,#132A3F 45%,#0A1826 100%)}
   .aurora-layer{position:fixed;inset:0;z-index:1;overflow:hidden;pointer-events:none}
   .aurora-blob{position:absolute;border-radius:50%;filter:blur(150px);will-change:transform}
-  .aurora-1{width:760px;height:760px;top:-220px;left:-200px;background:radial-gradient(circle,#2E6FB8 0%,rgba(46,111,184,0) 70%);opacity:.24;animation:auroraA 26s ease-in-out infinite}
-  .aurora-2{width:700px;height:700px;top:8%;right:-240px;background:radial-gradient(circle,#5B4A9E 0%,rgba(91,74,158,0) 70%);opacity:.22;animation:auroraB 29s ease-in-out infinite}
-  .aurora-3{width:820px;height:820px;bottom:-280px;left:12%;background:radial-gradient(circle,#C7D4E0 0%,rgba(199,212,224,0) 70%);opacity:.1;animation:auroraC 27s ease-in-out infinite}
-  .aurora-4{width:600px;height:600px;bottom:2%;right:0%;background:radial-gradient(circle,#2A5C92 0%,rgba(42,92,146,0) 70%);opacity:.19;animation:auroraA 24s ease-in-out infinite reverse}
+  .aurora-1{width:760px;height:760px;top:-220px;left:-200px;background:radial-gradient(circle,#2E6FB8 0%,rgba(46,111,184,0) 70%);opacity:.1;animation:auroraA 26s ease-in-out infinite}
+  .aurora-2{width:700px;height:700px;top:8%;right:-240px;background:radial-gradient(circle,#5B4A9E 0%,rgba(91,74,158,0) 70%);opacity:.09;animation:auroraB 29s ease-in-out infinite}
+  .aurora-3{width:820px;height:820px;bottom:-280px;left:12%;background:radial-gradient(circle,#C7D4E0 0%,rgba(199,212,224,0) 70%);opacity:.04;animation:auroraC 27s ease-in-out infinite}
+  .aurora-4{width:600px;height:600px;bottom:2%;right:0%;background:radial-gradient(circle,#2A5C92 0%,rgba(42,92,146,0) 70%);opacity:.08;animation:auroraA 24s ease-in-out infinite reverse}
   @keyframes auroraA{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(55px,40px) scale(1.12)}}
   @keyframes auroraB{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-45px,55px) scale(1.08)}}
   @keyframes auroraC{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,-45px) scale(1.14)}}
 
   .page-content{position:relative;z-index:2}
 
-  .reveal{opacity:0;transform:translateY(38px);transition:opacity 1.15s cubic-bezier(.22,.61,.36,1),transform 1.15s cubic-bezier(.22,.61,.36,1)}
+  .reveal{opacity:0;transform:translateY(46px);transition:opacity 1.4s cubic-bezier(.22,.61,.36,1),transform 1.4s cubic-bezier(.22,.61,.36,1)}
   .reveal.is-visible{opacity:1;transform:translateY(0)}
+  /* .card already sets its own (faster) transition for its hover lift, which would
+     otherwise win over .reveal's transform transition since it's declared later in
+     the stylesheet — so re-assert the slow opacity+transform timing for the reveal-in
+     itself. The 'reveal' class is removed by JS once the reveal finishes, so this
+     stops applying afterwards and hover goes back to .card's normal fast .35s. */
+  .card.reveal{transition:opacity 1.4s cubic-bezier(.22,.61,.36,1),transform 1.4s cubic-bezier(.22,.61,.36,1)}
 
   .hero-anim{opacity:0;transform:translateY(18px);transition:opacity .9s cubic-bezier(.16,.8,.3,1),transform .9s cubic-bezier(.16,.8,.3,1)}
   .hero-anim.is-visible{opacity:1;transform:translateY(0)}
@@ -241,22 +247,22 @@
       <h2 class="section-title" style="font-family:'Cinzel',serif;font-size:34px;color:#F3F6FA;font-weight:600" data-i18n="pillarsTitle">Warum Eigentümer uns vertrauen</h2>
     </div>
     <div class="grid-4" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px">
-      <div class="card reveal" data-reveal-id="pillar1" style="padding:40px 28px;transition-delay:.04s">
+      <div class="card reveal" data-reveal-id="pillar1" style="padding:40px 28px;transition-delay:.08s">
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#C7D4E0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.4 8.4 8 9 4.6-.6 8-4 8-9V6l-8-3Z"></path></svg>
         <h3 style="font-family:'Cinzel',serif;font-size:16px;color:#F3F6FA;margin:22px 0 14px;letter-spacing:.01em" data-i18n="pillar1Title">100% Diskretion & Anonymität</h3>
         <p style="font-size:14px;line-height:1.75;color:#A9BDD0;margin:0;font-weight:300" data-i18n="pillar1Desc">Transport im vollständig geschlossenen Anhänger — ohne Werbung und ohne Branding. Niemand auf der Autobahn erkennt, welches Fahrzeug sich darin befindet.</p>
       </div>
-      <div class="card reveal" data-reveal-id="pillar2" style="padding:40px 28px;transition-delay:.1s">
+      <div class="card reveal" data-reveal-id="pillar2" style="padding:40px 28px;transition-delay:.24s">
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#C7D4E0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="10" r="3"></circle><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"></path></svg>
         <h3 style="font-family:'Cinzel',serif;font-size:16px;color:#F3F6FA;margin:22px 0 14px;letter-spacing:.01em" data-i18n="pillar2Title">Live-GPS & Vollversicherung</h3>
         <p style="font-size:14px;line-height:1.75;color:#A9BDD0;margin:0;font-weight:300" data-i18n="pillar2Desc">Unsere Fahrzeuge sind mit Echtzeit-GPS-Tracking ausgestattet und durch eine vollständige Transportversicherung abgesichert — für Ihre Ruhe während der gesamten Fahrt.</p>
       </div>
-      <div class="card reveal" data-reveal-id="pillar3" style="padding:40px 28px;transition-delay:.16s">
+      <div class="card reveal" data-reveal-id="pillar3" style="padding:40px 28px;transition-delay:.4s">
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#C7D4E0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5c0 9 7 16 16 16l3-4-6-3-2 2c-3-1.5-5-3.5-6-6l2-2-3-6Z"></path></svg>
         <h3 style="font-family:'Cinzel',serif;font-size:16px;color:#F3F6FA;margin:22px 0 14px;letter-spacing:.01em" data-i18n="pillar3Title">Direkter Fahrerkontakt, 24/7</h3>
         <p style="font-size:14px;line-height:1.75;color:#A9BDD0;margin:0;font-weight:300" data-i18n="pillar3Desc">Keine Zwischenhändler, keine Callcenter. Sie erhalten die direkte Telefonnummer des Fahrers, der Ihr Fahrzeug transportiert.</p>
       </div>
-      <div class="card reveal" data-reveal-id="pillar4" style="padding:40px 28px;transition-delay:.22s">
+      <div class="card reveal" data-reveal-id="pillar4" style="padding:40px 28px;transition-delay:.56s">
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#C7D4E0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1.5"></rect><circle cx="9" cy="10" r="1.6"></circle><path d="m5 17 4-4 3 3 3-5 4 6"></path></svg>
         <h3 style="font-family:'Cinzel',serif;font-size:16px;color:#F3F6FA;margin:22px 0 14px;letter-spacing:.01em" data-i18n="pillar4Title">Digitales Zustandsprotokoll</h3>
         <p style="font-size:14px;line-height:1.75;color:#A9BDD0;margin:0;font-weight:300" data-i18n="pillar4Desc">Bei Übernahme und Übergabe erstellen wir eine detaillierte digitale Fotodokumentation Ihres Fahrzeugs — vollständig papierlos.</p>
@@ -272,22 +278,22 @@
         <h2 class="section-title" style="font-family:'Cinzel',serif;font-size:34px;color:#F3F6FA;font-weight:600" data-i18n="useTitle">Für jede Situation die passende Lösung</h2>
       </div>
       <div class="grid-4" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px">
-        <div class="card reveal" data-reveal-id="usecase1" style="padding:36px 26px;transition-delay:.04s">
+        <div class="card reveal" data-reveal-id="usecase1" style="padding:36px 26px;transition-delay:.08s">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C7D4E0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10 12 3l9 7"></path><path d="M5 9v11h14V9"></path><path d="M9 20v-6h6v6"></path></svg>
           <h3 style="font-family:'Cinzel',serif;font-size:15px;color:#F3F6FA;margin:20px 0 12px" data-i18n="use1Title">Kauf & Verkauf von Fahrzeugen</h3>
           <p style="font-size:13.5px;line-height:1.7;color:#A9BDD0;margin:0;font-weight:300" data-i18n="use1Desc">Sichere Zustellung vom Autohaus oder Privatverkäufer direkt an Ihre Adresse — ohne zusätzliche Kilometer auf der Uhr.</p>
         </div>
-        <div class="card reveal" data-reveal-id="usecase2" style="padding:36px 26px;transition-delay:.1s">
+        <div class="card reveal" data-reveal-id="usecase2" style="padding:36px 26px;transition-delay:.24s">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C7D4E0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15 10 13 14 4l2 1-2 8 7-1v2l-7 2-2 7-2-1 1-6-6 1Z"></path></svg>
           <h3 style="font-family:'Cinzel',serif;font-size:15px;color:#F3F6FA;margin:20px 0 12px" data-i18n="use2Title">Flughafen- & VIP-Transfer</h3>
           <p style="font-size:13.5px;line-height:1.7;color:#A9BDD0;margin:0;font-weight:300" data-i18n="use2Desc">Zustellung direkt zum Privatflughafen oder Hotel am Reiseziel — etwa an der Côte d’Azur, in den Alpen oder auf Mallorca.</p>
         </div>
-        <div class="card reveal" data-reveal-id="usecase3" style="padding:36px 26px;transition-delay:.16s">
+        <div class="card reveal" data-reveal-id="usecase3" style="padding:36px 26px;transition-delay:.4s">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C7D4E0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10l8-6 8 6v10"></path><path d="M9 20v-7h6v7"></path><circle cx="12" cy="11" r="1.5"></circle></svg>
           <h3 style="font-family:'Cinzel',serif;font-size:15px;color:#F3F6FA;margin:20px 0 12px" data-i18n="use3Title">Oldtimer & nicht zugelassene Fahrzeuge</h3>
           <p style="font-size:13.5px;line-height:1.7;color:#A9BDD0;margin:0;font-weight:300" data-i18n="use3Desc">Sicherer Transport aus Garage, Museum oder Messe — ganz ohne Fahrt im öffentlichen Straßenverkehr.</p>
         </div>
-        <div class="card reveal" data-reveal-id="usecase4" style="padding:36px 26px;transition-delay:.22s">
+        <div class="card reveal" data-reveal-id="usecase4" style="padding:36px 26px;transition-delay:.56s">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C7D4E0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="14" height="11" rx="1.5"></rect><path d="m17 10 4-2v8l-4-2"></path><circle cx="10" cy="12.5" r="2.3"></circle></svg>
           <h3 style="font-family:'Cinzel',serif;font-size:15px;color:#F3F6FA;margin:20px 0 12px" data-i18n="use4Title">Prototypen & Erlkönige</h3>
           <p style="font-size:13.5px;line-height:1.7;color:#A9BDD0;margin:0;font-weight:300" data-i18n="use4Desc">Absoluter Schutz vor neugierigen Blicken und Fotografen während Testfahrten und Überführungen.</p>
@@ -303,14 +309,14 @@
       <h2 class="section-title" style="font-family:'Cinzel',serif;font-size:34px;color:#F3F6FA;font-weight:600" data-i18n="equipTitle">Technik, der Sie vertrauen können</h2>
     </div>
     <div class="grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:26px">
-      <div class="card reveal" data-reveal-id="equip1" style="padding:48px 42px;display:flex;gap:26px;align-items:flex-start;transition-delay:.04s">
+      <div class="card reveal" data-reveal-id="equip1" style="padding:48px 42px;display:flex;gap:26px;align-items:flex-start;transition-delay:.08s">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C7D4E0" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0" aria-hidden="true"><path d="M2 17h3l3-6h8l4 4h2"></path><circle cx="7" cy="19" r="2"></circle><circle cx="17" cy="19" r="2"></circle><path d="M2 17v-2h2"></path></svg>
         <div>
           <h3 style="font-family:'Cinzel',serif;font-size:18px;color:#F3F6FA;margin:0 0 14px" data-i18n="equip1Title">Spezielle Low-Clearance-Rampen</h3>
           <p style="font-size:14.5px;line-height:1.8;color:#A9BDD0;margin:0;font-weight:300" data-i18n="equip1Desc">Für das sichere Verladen tiefergelegter und sportlicher Fahrzeuge — von Ferrari über Lamborghini bis McLaren, ganz ohne Bodenkontakt.</p>
         </div>
       </div>
-      <div class="card reveal" data-reveal-id="equip2" style="padding:48px 42px;display:flex;gap:26px;align-items:flex-start;transition-delay:.12s">
+      <div class="card reveal" data-reveal-id="equip2" style="padding:48px 42px;display:flex;gap:26px;align-items:flex-start;transition-delay:.28s">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C7D4E0" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0" aria-hidden="true"><path d="M4 18a8 8 0 0 1 16 0"></path><line x1="12" y1="18" x2="12" y2="22"></line><line x1="7" y1="19" x2="6" y2="22"></line><line x1="17" y1="19" x2="18" y2="22"></line></svg>
         <div>
           <h3 style="font-family:'Cinzel',serif;font-size:18px;color:#F3F6FA;margin:0 0 14px" data-i18n="equip2Title">Vollständiger Witterungsschutz</h3>
@@ -330,7 +336,7 @@
     <div style="display:flex;flex-direction:column;gap:84px">
 
       <!-- Fleet row 1 -->
-      <div class="fleet-row reveal" data-reveal-id="fleet1" style="display:flex;flex-wrap:wrap;align-items:center;gap:48px;transition-delay:.04s">
+      <div class="fleet-row reveal" data-reveal-id="fleet1" style="display:flex;flex-wrap:wrap;align-items:center;gap:48px;transition-delay:.08s">
         <div class="fleet-media" style="order:1;flex:1 1 440px;position:relative;border-radius:3px;overflow:hidden;border:1px solid rgba(199,212,224,.22);aspect-ratio:4/3;box-shadow:0 20px 50px rgba(0,0,0,.35)">
           <img src="fleet1.jpg" alt="Abholung eines Fahrzeugs direkt beim Kunden vor Ort" data-i18n-alt="fleet1Alt" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,24,38,0) 35%,rgba(10,24,38,.82) 100%)"></div>
@@ -343,7 +349,7 @@
       </div>
 
       <!-- Fleet row 2 (visually reversed) -->
-      <div class="fleet-row reveal" data-reveal-id="fleet2" style="display:flex;flex-wrap:wrap;align-items:center;gap:48px;transition-delay:.1s">
+      <div class="fleet-row reveal" data-reveal-id="fleet2" style="display:flex;flex-wrap:wrap;align-items:center;gap:48px;transition-delay:.26s">
         <div class="fleet-media" style="order:2;flex:1 1 440px;position:relative;border-radius:3px;overflow:hidden;border:1px solid rgba(199,212,224,.22);aspect-ratio:4/3;box-shadow:0 20px 50px rgba(0,0,0,.35)">
           <img src="fleet2.jpg" alt="Geschlossener Spezialanhänger mit MoveOn Logo" data-i18n-alt="fleet2Alt" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,24,38,0) 35%,rgba(10,24,38,.82) 100%)"></div>
@@ -356,7 +362,7 @@
       </div>
 
       <!-- Fleet row 3 -->
-      <div class="fleet-row reveal" data-reveal-id="fleet3" style="display:flex;flex-wrap:wrap;align-items:center;gap:48px;transition-delay:.16s">
+      <div class="fleet-row reveal" data-reveal-id="fleet3" style="display:flex;flex-wrap:wrap;align-items:center;gap:48px;transition-delay:.44s">
         <div class="fleet-media" style="order:1;flex:1 1 440px;position:relative;border-radius:3px;overflow:hidden;border:1px solid rgba(199,212,224,.22);aspect-ratio:4/3;box-shadow:0 20px 50px rgba(0,0,0,.35)">
           <img src="fleet3.jpg" alt="Fahrzeug im geschlossenen Anhänger gesichert" data-i18n-alt="fleet3Alt" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 32%">
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,24,38,0) 35%,rgba(10,24,38,.82) 100%)"></div>
@@ -380,17 +386,17 @@
       </div>
       <div class="process-row" style="display:flex;align-items:flex-start;position:relative">
         <div class="process-line" style="position:absolute;top:26px;left:60px;right:60px;height:1px;background:rgba(199,212,224,.3)"></div>
-        <div class="process-step reveal" data-reveal-id="proc1" style="flex:1;text-align:center;padding:0 18px;position:relative;transition-delay:.04s">
+        <div class="process-step reveal" data-reveal-id="proc1" style="flex:1;text-align:center;padding:0 18px;position:relative;transition-delay:.08s">
           <div class="process-num" style="width:52px;height:52px;border-radius:50%;border:1px solid #C7D4E0;background:#0A1826;display:flex;align-items:center;justify-content:center;margin:0 auto 26px;font-family:'Cinzel',serif;font-size:18px;color:#F3F6FA;position:relative;z-index:1">01</div>
           <h3 style="font-family:'Cinzel',serif;font-size:16px;color:#F3F6FA;margin:0 0 12px" data-i18n="proc1Title">Anfrage & schnelles Angebot</h3>
           <p style="font-size:14px;line-height:1.75;color:#A9BDD0;margin:0;font-weight:300" data-i18n="proc1Desc">Kurzes Formular ausfüllen oder direkt per WhatsApp Kontakt aufnehmen.</p>
         </div>
-        <div class="process-step reveal" data-reveal-id="proc2" style="flex:1;text-align:center;padding:0 18px;position:relative;transition-delay:.14s">
+        <div class="process-step reveal" data-reveal-id="proc2" style="flex:1;text-align:center;padding:0 18px;position:relative;transition-delay:.28s">
           <div class="process-num" style="width:52px;height:52px;border-radius:50%;border:1px solid #C7D4E0;background:#0A1826;display:flex;align-items:center;justify-content:center;margin:0 auto 26px;font-family:'Cinzel',serif;font-size:18px;color:#F3F6FA;position:relative;z-index:1">02</div>
           <h3 style="font-family:'Cinzel',serif;font-size:16px;color:#F3F6FA;margin:0 0 12px" data-i18n="proc2Title">Fahrzeugübernahme</h3>
           <p style="font-size:14px;line-height:1.75;color:#A9BDD0;margin:0;font-weight:300" data-i18n="proc2Desc">Wir kommen zur vereinbarten Adresse, erstellen das digitale Zustandsprotokoll und verladen Ihr Fahrzeug.</p>
         </div>
-        <div class="process-step reveal" data-reveal-id="proc3" style="flex:1;text-align:center;padding:0 18px;position:relative;transition-delay:.24s">
+        <div class="process-step reveal" data-reveal-id="proc3" style="flex:1;text-align:center;padding:0 18px;position:relative;transition-delay:.48s">
           <div class="process-num" style="width:52px;height:52px;border-radius:50%;border:1px solid #C7D4E0;background:#0A1826;display:flex;align-items:center;justify-content:center;margin:0 auto 26px;font-family:'Cinzel',serif;font-size:18px;color:#F3F6FA;position:relative;z-index:1">03</div>
           <h3 style="font-family:'Cinzel',serif;font-size:16px;color:#F3F6FA;margin:0 0 12px" data-i18n="proc3Title">Sichere Zustellung</h3>
           <p style="font-size:14px;line-height:1.75;color:#A9BDD0;margin:0;font-weight:300" data-i18n="proc3Desc">Transport mit durchgehendem GPS-Tracking und direkter Kommunikation bis zur Schlüsselübergabe am Zielort.</p>
@@ -825,11 +831,26 @@
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
         if (entry.isIntersecting){
-          entry.target.classList.add('is-visible');
-          io.unobserve(entry.target);
+          var el = entry.target;
+          // read the reveal-in timing (delay + duration) BEFORE adding is-visible,
+          // so a .card's slow .card.reveal transition is what we measure, not
+          // whatever shorter transition it falls back to afterwards
+          var cs = getComputedStyle(el);
+          var durations = cs.transitionDuration.split(',').map(parseFloat);
+          var delays = cs.transitionDelay.split(',').map(parseFloat);
+          var maxEnd = 0;
+          for (var d = 0; d < durations.length; d++){
+            maxEnd = Math.max(maxEnd, (durations[d] || 0) + (delays[d % delays.length] || 0));
+          }
+          el.classList.add('is-visible');
+          io.unobserve(el);
+          // once the slow reveal-in finishes, drop the 'reveal' class so a .card
+          // goes back to its normal fast hover transition instead of staying on
+          // the slow reveal timing forever (see the .card.reveal CSS rule)
+          setTimeout(function(){ el.classList.remove('reveal'); }, maxEnd * 1000 + 150);
         }
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px -3% 0px' });
+    }, { threshold: 0.12, rootMargin: '0px 0px -12% 0px' });
     revealEls.forEach(function(el){ io.observe(el); });
   } else {
     revealEls.forEach(function(el){ el.classList.add('is-visible'); });
