@@ -33,12 +33,6 @@
   ::selection{background:#C7D4E0;color:#0A1826}
 
   .bg-flat{position:fixed;inset:0;z-index:0;background:linear-gradient(180deg,#0A1826 0%,#132A3F 45%,#0A1826 100%)}
-  .line-field{position:fixed;inset:0;z-index:1;overflow:hidden;pointer-events:none}
-  .line-field svg{width:100%;height:100%;display:block}
-  .line-field line{stroke:#C7D4E0;vector-effect:non-scaling-stroke}
-  .line-field .lf-a{stroke-width:1;opacity:.055}
-  .line-field .lf-b{stroke-width:1;opacity:.035}
-  .line-field .lf-tick{stroke-width:1;opacity:.07}
 
   .page-content{position:relative;z-index:2}
 
@@ -148,20 +142,6 @@
 
 <div style="width:100%;min-height:100vh;font-family:'Jost',sans-serif;color:#C7D4E0;-webkit-font-smoothing:antialiased">
 <div class="bg-flat"></div>
-<div class="line-field" aria-hidden="true">
-  <svg viewBox="0 0 1600 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <line class="lf-a" x1="-100" y1="150" x2="1700" y2="480"></line>
-    <line class="lf-a" x1="-100" y1="820" x2="1700" y2="550"></line>
-    <line class="lf-b" x1="250" y1="-100" x2="950" y2="1100"></line>
-    <line class="lf-b" x1="1250" y1="-100" x2="1750" y2="350"></line>
-    <line class="lf-a" x1="-150" y1="30" x2="600" y2="-100"></line>
-    <line class="lf-b" x1="1000" y1="1100" x2="1700" y2="720"></line>
-    <line class="lf-tick" x1="430" y1="305" x2="430" y2="345"></line>
-    <line class="lf-tick" x1="1180" y1="640" x2="1220" y2="640"></line>
-    <line class="lf-tick" x1="880" y1="210" x2="880" y2="250"></line>
-  </svg>
-</div>
-
 <div class="page-content" id="rootEl" style="overflow-x:hidden">
 
   <!-- TOPBAR -->
