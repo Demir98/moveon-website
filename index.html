@@ -830,8 +830,16 @@
           io.unobserve(el);
           // once the slow reveal-in finishes, drop the 'reveal' class so a .card
           // goes back to its normal fast hover transition instead of staying on
-          // the slow reveal timing forever (see the .card.reveal CSS rule)
-          setTimeout(function(){ el.classList.remove('reveal'); }, maxEnd * 1000 + 150);
+          // the slow reveal timing forever (see the .card.reveal CSS rule).
+          // Also clear the inline transition-delay used to stagger the reveal —
+          // it's set directly on the element's style attribute, so removing the
+          // class alone doesn't clear it, and it would otherwise keep delaying
+          // every later hover transition (transform/border/shadow/background)
+          // by that same stagger amount (up to .56s), making hover feel laggy.
+          setTimeout(function(){
+            el.classList.remove('reveal');
+            el.style.transitionDelay = '';
+          }, maxEnd * 1000 + 150);
         }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -12% 0px' });
