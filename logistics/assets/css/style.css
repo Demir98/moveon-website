@@ -101,40 +101,7 @@
   --radius: 4px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --ink: #e9eef2;
-    --ink-soft: #aebdc8;
-    --paper: #0f1a24;
-    --paper-raised: #16242f;
-    --line: #283945;
-    --navy: #2f6f9e;
-    --navy-deep: #1c3f5c;
-    --blue: #3fa4de;
-  }
-  :root:not([data-theme="light"]) body {
-    background-image:
-      radial-gradient(760px 560px at 88% -8%, rgba(63,164,222,0.16), transparent 68%),
-      radial-gradient(640px 560px at -8% 58%, rgba(47,111,158,0.16), transparent 68%),
-      radial-gradient(620px 520px at 55% 118%, rgba(63,164,222,0.10), transparent 68%);
-  }
-}
-:root[data-theme="dark"] {
-  --ink: #e9eef2;
-  --ink-soft: #aebdc8;
-  --paper: #0f1a24;
-  --paper-raised: #16242f;
-  --line: #283945;
-  --navy: #2f6f9e;
-  --navy-deep: #1c3f5c;
-  --blue: #3fa4de;
-}
-:root[data-theme="dark"] body {
-  background-image:
-    radial-gradient(760px 560px at 88% -8%, rgba(63,164,222,0.16), transparent 68%),
-    radial-gradient(640px 560px at -8% 58%, rgba(47,111,158,0.16), transparent 68%),
-    radial-gradient(620px 520px at 55% 118%, rgba(63,164,222,0.10), transparent 68%);
-}
+/* tamna tema iskljucena -- sajt je uvek svetao */
 
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
