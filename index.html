@@ -184,6 +184,31 @@
   /* logo unutar polovine -- koristi se samo na telefonu */
   .half-logo{ display:none; }
 
+  /* ---------- prelaz pri kliku: jedna strana se siri, druga izlazi ---------- */
+  .split.leaving{ pointer-events:none; }
+  .split.leaving .half{
+    transition: flex 0.7s cubic-bezier(.22,.9,.3,1), filter 0.45s ease;
+  }
+  .split.leaving .half.go{ filter:none !important; }
+  .split.leaving .half.go .half-inner{
+    transform: scale(1.07);
+    transition: transform 0.7s cubic-bezier(.22,.9,.3,1);
+  }
+  .split.leaving .half:not(.go) .half-inner{
+    opacity:0;
+    transition: opacity 0.35s ease;
+  }
+  .split.leaving .badge-wrap{
+    opacity:0 !important;
+    transition: opacity 0.3s ease;
+  }
+  .split.leaving .half::before{ opacity:0 !important; }
+
+  @media (prefers-reduced-motion: reduce){
+    .split.leaving .half,
+    .split.leaving .half.go .half-inner{ transition:none; }
+  }
+
   /* ---------- uredjaji na dodir (nema hovera) ---------- */
   @media (hover: none), (pointer: coarse){
     .badge-wrap{ display:none !important; }
@@ -222,8 +247,8 @@
     .split .half:hover{ filter:none; flex:none; }
     .half:hover .half-inner{ transform:none; }
     .half:hover::after{ opacity:0; }
-    .badge-wrap{ display:none; }
-    .half::before{ display:none; }
+    .badge-wrap{ display:none !important; }
+    .half::before{ display:none !important; }
 
     .logistics{ box-shadow: 0 -14px 34px rgba(10,24,38,0.30); }
 
@@ -340,5 +365,52 @@
       <div class="brand-footer">Move On</div>
     </div>
   </div>
+<script>
+(function(){
+  var split  = document.querySelector('.split');
+  var halves = Array.prototype.slice.call(document.querySelectorAll('.half'));
+  if(!split) return;
+
+  function animacijaMoguca(){
+    return window.matchMedia('(hover: hover)').matches
+        && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  halves.forEach(function(half){
+    half.addEventListener('click', function(e){
+      // na dodir i kod otvaranja u novom tabu -- normalno ponasanje
+      if(!animacijaMoguca()) return;
+      if(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+
+      e.preventDefault();
+      var href = half.getAttribute('href');
+
+      // fiksiraj trenutne sirine BEZ animacije, da prelaz krene odatle
+      var sirine = halves.map(function(x){ return x.getBoundingClientRect().width; });
+      halves.forEach(function(x, i){
+        x.style.transition = 'none';
+        x.style.flex = '0 0 ' + sirine[i] + 'px';
+      });
+      void split.offsetWidth;
+      halves.forEach(function(x){ x.style.transition = ''; });
+      void split.offsetWidth;
+
+      split.classList.add('leaving');
+      half.classList.add('go');
+      halves.forEach(function(x){
+        x.style.flex = '0 0 ' + (x === half ? '100%' : '0%');
+      });
+
+      setTimeout(function(){ window.location.href = href; }, 720);
+    });
+  });
+
+  // povratak dugmetom "nazad" -- vrati pocetno stanje
+  window.addEventListener('pageshow', function(){
+    split.classList.remove('leaving');
+    halves.forEach(function(x){ x.classList.remove('go'); x.style.flex = ''; });
+  });
+})();
+</script>
 </body>
 </html>
