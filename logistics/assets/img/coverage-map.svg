@@ -1,0 +1,63 @@
+<svg viewBox="0 0 640 560" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="map-title">
+  <title id="map-title">Schematische Abdeckungskarte: Depot Altenstadt mit Touren durch die Wetterau bis zum Taunus</title>
+
+  <!-- soft grid backdrop -->
+  <g stroke="#D7E1E8" stroke-width="1">
+    <path d="M0 80H640M0 160H640M0 240H640M0 320H640M0 400H640M0 480H640"/>
+    <path d="M80 0V560M160 0V560M240 0V560M320 0V560M400 0V560M480 0V560M560 0V560"/>
+  </g>
+
+  <!-- taunus ridge, abstracted contour (north-west) -->
+  <path d="M-10 150 C 90 100, 150 95, 210 135 S 330 170, 400 120" stroke="#C3D4DF" stroke-width="10" stroke-linecap="round" fill="none" opacity="0.7"/>
+  <text x="40" y="100" font-family="IBM Plex Sans, sans-serif" font-size="15" fill="#5B7486" letter-spacing="0.2">Taunus</text>
+
+  <!-- wetterau plain label -->
+  <text x="430" y="470" font-family="IBM Plex Sans, sans-serif" font-size="15" fill="#5B7486" letter-spacing="0.2">Wetterau</text>
+
+  <!-- route lines fanning from hub -->
+  <g stroke="#1E8AC6" stroke-width="2.5" fill="none" opacity="0.85">
+    <path d="M320 280 C 260 230, 190 190, 110 150"/>
+    <path d="M320 280 C 250 260, 170 255, 90 260"/>
+    <path d="M320 280 C 270 320, 210 360, 130 400"/>
+    <path d="M320 280 C 330 350, 360 410, 360 480"/>
+    <path d="M320 280 C 390 320, 450 345, 520 380"/>
+    <path d="M320 280 C 400 260, 470 235, 540 200"/>
+    <path d="M320 280 C 380 230, 430 195, 470 150"/>
+  </g>
+
+  <!-- waypoint towns -->
+  <g font-family="IBM Plex Sans, sans-serif" font-size="13" fill="#2E4A5E">
+    <circle cx="110" cy="150" r="5" fill="#194A72"/>
+    <text x="120" y="146">Nidda</text>
+
+    <circle cx="90" cy="260" r="5" fill="#194A72"/>
+    <text x="38" y="264">Büdingen</text>
+
+    <circle cx="130" cy="400" r="5" fill="#194A72"/>
+    <text x="90" y="422">Hanau</text>
+
+    <circle cx="360" cy="480" r="5" fill="#194A72"/>
+    <text x="330" y="505">Bad&#160;Vilbel</text>
+
+    <circle cx="520" cy="380" r="5" fill="#194A72"/>
+    <text x="500" y="404">Frankfurt</text>
+
+    <circle cx="540" cy="200" r="5" fill="#194A72"/>
+    <text x="510" y="190">Friedberg</text>
+
+    <circle cx="470" cy="150" r="5" fill="#194A72"/>
+    <text x="440" y="134">Bad&#160;Homburg</text>
+  </g>
+
+  <!-- hub: Altenstadt depot -->
+  <g>
+    <circle cx="320" cy="280" r="34" fill="#194A72"/>
+    <circle cx="320" cy="280" r="34" fill="none" stroke="#1E8AC6" stroke-width="2" opacity="0.6">
+      <animate attributeName="r" values="34;46;34" dur="3.2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.55;0;0.55" dur="3.2s" repeatCount="indefinite"/>
+    </circle>
+    <path d="M308 272h24v18h-24z M308 272l12-10 12 10" stroke="#F4F6F8" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+  </g>
+  <text x="320" y="334" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="600" font-size="17" fill="#16222D">Altenstadt</text>
+  <text x="320" y="353" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12.5" fill="#5B7486">Depot &amp; Startpunkt der Touren</text>
+</svg>
