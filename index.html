@@ -453,10 +453,25 @@
     });
   });
 
-  // povratak dugmetom "nazad" -- vrati pocetno stanje
-  window.addEventListener('pageshow', function(){
+  // povratak dugmetom "nazad" -- vrati sve u pocetno stanje
+  function resetuj(){
     split.classList.remove('leaving');
-    halves.forEach(function(x){ x.classList.remove('go'); x.style.flex = ''; });
+    halves.forEach(function(x){
+      x.classList.remove('go');
+      x.style.flex = '';
+      x.style.transition = '';
+      var inner = x.querySelector('.half-inner');
+      if(inner){ inner.style.opacity = ''; inner.style.transition = ''; }
+    });
+    var overlays = document.querySelectorAll('.leave-overlay');
+    for(var i = 0; i < overlays.length; i++){
+      if(overlays[i].parentNode) overlays[i].parentNode.removeChild(overlays[i]);
+    }
+  }
+  window.addEventListener('pageshow', resetuj);
+  window.addEventListener('popstate', resetuj);
+  document.addEventListener('visibilitychange', function(){
+    if(!document.hidden) resetuj();
   });
 })();
 </script>
