@@ -1,0 +1,865 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>MoveOn Logistics — Geschlossener Fahrzeugtransport Europaweit</title>
+<meta name="description" content="Diskreter, sicherer und zuverlässiger geschlossener Fahrzeugtransport für exklusive, luxuriöse und Sammlerfahrzeuge europaweit.">
+<meta name="theme-color" content="#0A1826">
+<link rel="icon" type="image/png" href="favicon-navy.png">
+<link rel="apple-touch-icon" href="icon-512.png">
+
+<!-- Open Graph / link-preview (WhatsApp, Facebook, LinkedIn, etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MoveOn Logistics">
+<meta property="og:title" content="MoveOn Logistics — Geschlossener Transport. Europaweit.">
+<meta property="og:description" content="Diskreter, sicherer und zuverlässiger geschlossener Fahrzeugtransport für exklusive, luxuriöse und Sammlerfahrzeuge europaweit.">
+<meta property="og:image" content="https://moveon-logistics.de/transport/icon-512.png">
+<meta property="og:url" content="https://moveon-logistics.de/transport/">
+
+<!-- Twitter card (same image, uses og:title/description as fallback) -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://moveon-logistics.de/transport/icon-512.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0}
+  a{color:#C7D4E0;text-decoration:none}
+  a:hover{color:#ffffff}
+  ::selection{background:#C7D4E0;color:#0A1826}
+
+  .bg-flat{position:fixed;inset:0;z-index:0;background:linear-gradient(180deg,#0A1826 0%,#132A3F 45%,#0A1826 100%)}
+
+  .page-content{position:relative;z-index:2}
+
+  .reveal{opacity:0;transform:translateY(46px);transition:opacity 1.4s cubic-bezier(.22,.61,.36,1),transform 1.4s cubic-bezier(.22,.61,.36,1)}
+  .reveal.is-visible{opacity:1;transform:translateY(0)}
+  /* .card already sets its own (faster) transition for its hover lift, which would
+     otherwise win over .reveal's transform transition since it's declared later in
+     the stylesheet — so re-assert the slow opacity+transform timing for the reveal-in
+     itself. The 'reveal' class is removed by JS once the reveal finishes, so this
+     stops applying afterwards and hover goes back to .card's normal fast .35s. */
+  .card.reveal{transition:opacity 1.4s cubic-bezier(.22,.61,.36,1),transform 1.4s cubic-bezier(.22,.61,.36,1)}
+
+  .hero-anim{opacity:0;transform:translateY(18px);transition:opacity .9s cubic-bezier(.16,.8,.3,1),transform .9s cubic-bezier(.16,.8,.3,1)}
+  .hero-anim.is-visible{opacity:1;transform:translateY(0)}
+
+  .hero-art-wrap{perspective:1200px}
+  .hero-art-inner{transition:transform .25s ease-out;transform-style:preserve-3d;will-change:transform}
+  .hero-sky-scroll{position:absolute;inset:0;width:200%;animation:heroSkyScroll 95s linear infinite;will-change:transform}
+  .hero-sky-zoom{position:absolute;inset:0;display:flex}
+  .hero-skyline-img{width:50%;height:100%;object-fit:cover;object-position:center bottom;opacity:.55;flex-shrink:0;display:block}
+  @keyframes heroSkyScroll{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+  .star-field{position:absolute;inset:0;pointer-events:none;z-index:0}
+  .star{position:absolute;border-radius:50%;background:#EAF0F6;animation:starTwinkle ease-in-out infinite}
+  @keyframes starTwinkle{0%,100%{opacity:.12}50%{opacity:.7}}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 30px;border-radius:2px;font-family:'Jost',sans-serif;font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;border:1px solid #C7D4E0;transition:all .25s ease;white-space:nowrap}
+  .btn-primary{background:#C7D4E0;color:#0A1826}
+  .btn-primary:hover{background:#EDF2F6;border-color:#EDF2F6}
+  .btn-outline{background:transparent;color:#EAF0F5}
+  .btn-outline:hover{background:rgba(199,212,224,.12);border-color:#fff;color:#fff}
+  .btn:hover{box-shadow:0 0 26px rgba(180,205,230,.32)}
+
+  .card{position:relative;border:1px solid rgba(199,212,224,.22);background:rgba(199,212,224,.06);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:3px;transition:transform .35s cubic-bezier(.16,.8,.3,1),border-color .35s ease,box-shadow .35s ease,background .35s ease}
+  .card:hover{transform:translateY(-6px);border-color:rgba(199,212,224,.55);background:rgba(199,212,224,.1);box-shadow:0 20px 50px rgba(0,0,0,.35),0 0 32px rgba(120,160,220,.2)}
+  .card svg{transition:filter .35s ease}
+  .card:hover svg{filter:drop-shadow(0 0 7px rgba(199,212,224,.6))}
+
+  .lang-btn{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.1em;background:transparent;border:1px solid rgba(199,212,224,.35);color:#9FB3C6;padding:7px 11px;cursor:pointer;transition:all .2s ease}
+  .lang-btn:hover{color:#fff;border-color:#C7D4E0;box-shadow:0 0 14px rgba(199,212,224,.35)}
+  .lang-btn.is-active{background:#C7D4E0;color:#0A1826;border-color:#C7D4E0;box-shadow:0 0 14px rgba(199,212,224,.4)}
+
+  .nav-link{font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.04em;color:#C7D4E0;opacity:.85;transition:opacity .2s ease}
+  .nav-link:hover{opacity:1;color:#C7D4E0}
+
+  .process-num{transition:box-shadow .3s ease,border-color .3s ease,transform .3s ease}
+  .process-num:hover{box-shadow:0 0 24px rgba(199,212,224,.55);border-color:#fff;transform:scale(1.06)}
+
+  .faq-q{width:100%;text-align:left;background:none;border:none;color:#F3F6FA;font-family:'Cinzel',serif;font-size:17px;letter-spacing:.01em;padding:24px 4px;display:flex;justify-content:space-between;align-items:center;gap:20px;cursor:pointer}
+  .faq-chevron{flex-shrink:0;transition:transform .25s ease;color:#C7D4E0}
+  .faq-chevron.is-open{transform:rotate(180deg)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+  .faq-a-inner{color:#A9BDD0;font-family:'Jost',sans-serif;font-size:15px;line-height:1.75;padding:0 4px 24px}
+
+  .field input{width:100%;background:rgba(199,212,224,.05);border:1px solid rgba(199,212,224,.28);color:#F3F6FA;font-family:'Jost',sans-serif;font-size:15px;padding:14px 15px;border-radius:2px;transition:border-color .2s ease,background .2s ease}
+  .field input::placeholder{color:#60758B}
+  .field input:focus{outline:none;border-color:#C7D4E0;background:rgba(199,212,224,.08)}
+  .field label{display:block;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8FA4B8;margin-bottom:9px}
+
+  .fab-stack{position:fixed;right:22px;bottom:22px;z-index:60;width:56px;height:56px}
+  .fab-btn{position:absolute;left:0;top:0;display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:#16293C;border:1px solid rgba(199,212,224,.4);color:#C7D4E0;box-shadow:0 10px 26px rgba(0,0,0,.35);cursor:pointer;transition:transform .32s cubic-bezier(.34,1.56,.64,1),opacity .22s ease,background .2s ease,border-color .2s ease,color .2s ease,box-shadow .2s ease}
+  .fab-btn:hover{background:#1F3A52;border-color:#C7D4E0;color:#fff;box-shadow:0 10px 26px rgba(0,0,0,.35),0 0 18px rgba(199,212,224,.35)}
+  .fab-main{z-index:3;animation:waPulse 2.8s ease-in-out infinite}
+  .fab-main.is-open{animation:none;background:#1F3A52;border-color:#C7D4E0;color:#fff}
+  @keyframes waPulse{0%,100%{box-shadow:0 0 0 0 rgba(199,212,224,.4),0 10px 26px rgba(0,0,0,.35)}50%{box-shadow:0 0 0 11px rgba(199,212,224,0),0 10px 26px rgba(0,0,0,.35)}}
+  .fab-sub{z-index:2;transform:translate(0,0) scale(.25);opacity:0;pointer-events:none}
+  .fab-sub.is-open{opacity:1;pointer-events:auto}
+  .fab-sub.is-open.fab-pos-1{transform:translate(0,-76px) scale(1)}
+  .fab-sub.is-open.fab-pos-2{transform:translate(-54px,-54px) scale(1)}
+  .fab-sub.is-open.fab-pos-3{transform:translate(-76px,0) scale(1)}
+  .fab-icon-closed,.fab-icon-open{position:absolute;transition:opacity .18s ease,transform .18s ease}
+  .fab-main:not(.is-open) .fab-icon-open{opacity:0;transform:rotate(-45deg) scale(.6)}
+  .fab-main.is-open .fab-icon-closed{opacity:0;transform:rotate(45deg) scale(.6)}
+  .fab-main:not(.is-open) .fab-icon-closed{opacity:1;transform:rotate(0) scale(1)}
+  .fab-main.is-open .fab-icon-open{opacity:1;transform:rotate(0) scale(1)}
+
+  @media (max-width:900px){
+    .nav-links{display:none !important}
+  }
+  @media (max-width:780px){
+    .grid-4{grid-template-columns:1fr !important}
+    .grid-2{grid-template-columns:1fr !important}
+    .grid-form{grid-template-columns:1fr !important}
+    .hero-title{font-size:38px !important}
+    .hero-kicker{font-size:11px !important}
+    .section-title{font-size:28px !important}
+    .process-row{flex-direction:column !important;align-items:flex-start !important}
+    .process-line{display:none !important}
+    .process-step{width:100% !important}
+    .hero-pad{padding-top:104px !important;padding-bottom:110px !important}
+    .footer-row{flex-direction:column !important;gap:36px !important;align-items:flex-start !important}
+    .fleet-media{order:1 !important}
+    .fleet-text{order:2 !important}
+    .fleet-row{gap:26px !important}
+    .hero-car-pos{width:min(420px,72%) !important}
+    .hero-skyline-img{object-fit:contain !important;object-position:center bottom !important;opacity:.4 !important}
+    .hero-sky-zoom{transform:scale(1.35);transform-origin:center bottom}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .fab-main,.hero-sky-scroll{animation:none !important}
+    .star{animation:none !important;opacity:.3 !important}
+    .fab-btn{transition:none !important}
+    .reveal,.hero-anim{transition:none !important;opacity:1 !important;transform:none !important}
+  }
+</style>
+</head>
+<body>
+
+<div style="width:100%;min-height:100vh;font-family:'Jost',sans-serif;color:#C7D4E0;-webkit-font-smoothing:antialiased">
+<div class="bg-flat"></div>
+<div class="page-content" id="rootEl" style="overflow-x:hidden">
+
+  <!-- TOPBAR -->
+  <div style="position:sticky;top:0;z-index:40;background:rgba(10,24,38,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(199,212,224,.12)">
+    <div style="max-width:1240px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px">
+      <a href="#" style="display:flex;align-items:center;gap:12px">
+        <img src="logo.png" alt="MoveOn Logistics" style="height:28px;width:auto;display:block">
+        <span style="font-family:'Cinzel',serif;font-size:16px;letter-spacing:.08em;color:#F3F6FA;line-height:1">MOVEON<br><span style="font-size:8px;letter-spacing:.22em;color:#8FA4B8">LOGISTICS GMBH</span></span>
+      </a>
+      <div class="nav-links" style="display:flex;align-items:center;gap:30px">
+        <a class="nav-link" href="#pillars" data-i18n="navBenefits">Vorteile</a>
+        <a class="nav-link" href="#usecases" data-i18n="navUseCases">Einsatzbereiche</a>
+        <a class="nav-link" href="#fleet" data-i18n="fleetKicker">Unser Fuhrpark</a>
+        <a class="nav-link" href="#process" data-i18n="navProcess">Ablauf</a>
+        <a class="nav-link" href="#faq" data-i18n="navFaq">FAQ</a>
+        <a class="nav-link" href="#contact" data-i18n="navContact">Kontakt</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px">
+        <a href="tel:+491719096969" style="display:flex;align-items:center;gap:8px;font-size:13px;color:#C7D4E0">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5c0 9 7 16 16 16l3-4-6-3-2 2c-3-1.5-5-3.5-6-6l2-2-3-6Z"></path></svg>
+        </a>
+        <div style="display:flex;gap:6px">
+          <button class="lang-btn is-active" id="langDE" type="button">DE</button>
+          <button class="lang-btn" id="langEN" type="button">EN</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div id="heroZone" style="position:relative;overflow:hidden">
+    <div class="hero-art-wrap" style="position:absolute;inset:0;pointer-events:none">
+      <div class="hero-sky-scroll" id="heroSkyScroll">
+        <div class="star-field" id="starField" aria-hidden="true"></div>
+        <div class="hero-sky-zoom">
+          <img class="hero-skyline-img" src="hero-skyline.png" alt="" aria-hidden="true">
+          <img class="hero-skyline-img" src="hero-skyline.png" alt="" aria-hidden="true">
+        </div>
+      </div>
+      <div class="hero-car-pos" style="position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(520px,66%)">
+        <div class="hero-art-inner" id="heroArtInner" style="width:100%">
+          <img class="hero-art-img" src="hero-car.png" alt="" aria-hidden="true" style="display:block;width:100%;height:auto;opacity:.95">
+        </div>
+      </div>
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 58% 60% at 50% 48%,rgba(10,24,38,.8) 0%,rgba(10,24,38,.45) 45%,rgba(10,24,38,0) 75%)"></div>
+    </div>
+
+    <div class="hero-pad" style="position:relative;max-width:1240px;margin:0 auto;padding:148px 28px 150px;text-align:center">
+      <div class="hero-kicker hero-anim" style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#8FA4B8;margin-bottom:26px;transition-delay:.04s" data-i18n="heroKicker">Sleep Well. We Move On.</div>
+      <h1 class="hero-title hero-anim" style="font-family:'Cinzel',serif;font-weight:600;font-size:60px;line-height:1.18;letter-spacing:.02em;color:#F6F9FB;margin:0;transition-delay:.12s">
+        <div data-i18n="heroTitleLine1">GESCHLOSSENER TRANSPORT.</div>
+        <div data-i18n="heroTitleLine2">EUROPAWEIT.</div>
+      </h1>
+      <div class="hero-anim" style="width:64px;height:1px;background:#C7D4E0;opacity:.5;margin:30px auto;transition-delay:.22s"></div>
+      <p class="hero-anim" style="max-width:620px;margin:0 auto 42px;font-size:17px;line-height:1.75;color:#B9C9D8;font-weight:300;transition-delay:.3s" data-i18n="heroSubtitle">Diskreter, sicherer und zuverlässiger Transport Ihres Fahrzeugs in einer spezialisierten geschlossenen Anhängerkonstruktion — ganz ohne Werbebeschriftung, von Tür zu Tür.</p>
+      <div class="hero-anim" style="display:flex;gap:18px;justify-content:center;flex-wrap:wrap;transition-delay:.38s">
+        <a class="btn btn-primary" href="#contact" data-i18n="ctaPrimary">Jetzt Transport anfragen</a>
+        <a class="btn btn-outline wa-link" href="#" target="_blank" rel="noopener">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-8.9 8.4 8.6 8.6 0 0 1-3.9-1L3 20l1.2-5a8.3 8.3 0 0 1-1.1-4.2A8.4 8.4 0 0 1 11.9 2a8.4 8.4 0 0 1 9.1 9.5Z"></path><path d="M8.5 9.5c.3 2.5 2.5 4.7 5 5"></path></svg>
+          <span data-i18n="ctaWhatsapp">WhatsApp Direktkontakt</span>
+        </a>
+      </div>
+
+      <div class="hero-anim" style="margin-top:70px;display:flex;justify-content:center;gap:48px;flex-wrap:wrap;transition-delay:.46s">
+        <div style="display:flex;align-items:center;gap:10px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C7D4E0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="10" r="3"></circle><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"></path></svg>
+          <span style="font-size:13px;letter-spacing:.04em;color:#AEC0D2" data-i18n="badgeGps">Live-GPS-Tracking</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C7D4E0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.4 8.4 8 9 4.6-.6 8-4 8-9V6l-8-3Z"></path></svg>
+          <span style="font-size:13px;letter-spacing:.04em;color:#AEC0D2" data-i18n="badgeInsurance">Vollkasko-Transportversicherung</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C7D4E0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3.2 2"></path></svg>
+          <span style="font-size:13px;letter-spacing:.04em;color:#AEC0D2" data-i18n="badgeSupport">24/7 Erreichbarkeit</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr style="border:none;height:1px;background:rgba(199,212,224,.14);margin:0" />
+
+  <!-- TRUST PILLARS -->
+  <div id="pillars" style="max-width:1240px;margin:0 auto;padding:110px 28px 100px">
+    <div class="reveal" data-reveal-id="pillarsHead" style="text-align:center;margin-bottom:64px">
+      <div style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#8FA4B8;margin-bottom:16px" data-i18n="pillarsKicker">Ihre Vorteile</div>
+      <h2 class="section-title" style="font-family:'Cinzel',serif;font-size:34px;color:#F3F6FA;font-weight:600" data-i18n="pillarsTitle">Warum Eigentümer uns vertrauen</h2>
+    </div>
+    <div class="grid-4" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px">
+      <div class="card reveal" data-reveal-id="pillar1" style="padding:40px 28px;transition-delay:.08s">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#C7D4E0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.4 8.4 8 9 4.6-.6 8-4 8-9V6l-8-3Z"></path></svg>
+        <h3 style="font-family:'Cinzel',serif;font-size:16px;color:#F3F6FA;margin:22px 0 14px;letter-spacing:.01em" data-i18n="pillar1Title">100% Diskretion & Anonymität</h3>
+        <p style="font-size:14px;line-height:1.75;color:#A9BDD0;margin:0;font-weight:300" data-i18n="pillar1Desc">Transport im vollständig geschlossenen Anhänger — ohne Werbung und ohne Branding. Niemand auf der Autobahn erkennt, welches Fahrzeug sich darin befindet.</p>
+      </div>
+      <div class="card reveal" data-reveal-id="pillar2" style="padding:40px 28px;transition-delay:.24s">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#C7D4E0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="10" r="3"></circle><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"></path></svg>
+        <h3 style="font-family:'Cinzel',serif;font-size:16px;color:#F3F6FA;margin:22px 0 14px;letter-spacing:.01em" data-i18n="pillar2Title">Live-GPS & Vollversicherung</h3>
+        <p style="font-size:14px;line-height:1.75;color:#A9BDD0;margin:0;font-weight:300" data-i18n="pillar2Desc">Unsere Fahrzeuge sind mit Echtzeit-GPS-Tracking ausgestattet und durch eine vollständige Transportversicherung abgesichert — für Ihre Ruhe während der gesamten Fahrt.</p>
+      </div>
+      <div class="card reveal" data-reveal-id="pillar3" style="padding:40px 28px;transition-delay:.4s">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#C7D4E0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5c0 9 7 16 16 16l3-4-6-3-2 2c-3-1.5-5-3.5-6-6l2-2-3-6Z"></path></svg>
+        <h3 style="font-family:'Cinzel',serif;font-size:16px;color:#F3F6FA;margin:22px 0 14px;letter-spacing:.01em" data-i18n="pillar3Title">Direkter Fahrerkontakt, 24/7</h3>
+        <p style="font-size:14px;line-height:1.75;color:#A9BDD0;margin:0;font-weight:300" data-i18n="pillar3Desc">Keine Zwischenhändler, keine Callcenter. Sie erhalten die direkte Telefonnummer des Fahrers, der Ihr Fahrzeug transportiert.</p>
+      </div>
+      <div class="card reveal" data-reveal-id="pillar4" style="padding:40px 28px;transition-delay:.56s">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#C7D4E0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1.5"></rect><circle cx="9" cy="10" r="1.6"></circle><path d="m5 17 4-4 3 3 3-5 4 6"></path></svg>
+        <h3 style="font-family:'Cinzel',serif;font-size:16px;color:#F3F6FA;margin:22px 0 14px;letter-spacing:.01em" data-i18n="pillar4Title">Digitales Zustandsprotokoll</h3>
+        <p style="font-size:14px;line-height:1.75;color:#A9BDD0;margin:0;font-weight:300" data-i18n="pillar4Desc">Bei Übernahme und Übergabe erstellen wir eine detaillierte digitale Fotodokumentation Ihres Fahrzeugs — vollständig papierlos.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- USE CASES -->
+  <div id="usecases" style="background:rgba(199,212,224,.03);border-top:1px solid rgba(199,212,224,.14);border-bottom:1px solid rgba(199,212,224,.14)">
+    <div style="max-width:1240px;margin:0 auto;padding:110px 28px 100px">
+      <div class="reveal" data-reveal-id="usecasesHead" style="text-align:center;margin-bottom:64px">
+        <div style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#8FA4B8;margin-bottom:16px" data-i18n="useKicker">Einsatzbereiche</div>
+        <h2 class="section-title" style="font-family:'Cinzel',serif;font-size:34px;color:#F3F6FA;font-weight:600" data-i18n="useTitle">Für jede Situation die passende Lösung</h2>
+      </div>
+      <div class="grid-4" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px">
+        <div class="card reveal" data-reveal-id="usecase1" style="padding:36px 26px;transition-delay:.08s">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C7D4E0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10 12 3l9 7"></path><path d="M5 9v11h14V9"></path><path d="M9 20v-6h6v6"></path></svg>
+          <h3 style="font-family:'Cinzel',serif;font-size:15px;color:#F3F6FA;margin:20px 0 12px" data-i18n="use1Title">Kauf & Verkauf von Fahrzeugen</h3>
+          <p style="font-size:13.5px;line-height:1.7;color:#A9BDD0;margin:0;font-weight:300" data-i18n="use1Desc">Sichere Zustellung vom Autohaus oder Privatverkäufer direkt an Ihre Adresse — ohne zusätzliche Kilometer auf der Uhr.</p>
+        </div>
+        <div class="card reveal" data-reveal-id="usecase2" style="padding:36px 26px;transition-delay:.24s">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C7D4E0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15 10 13 14 4l2 1-2 8 7-1v2l-7 2-2 7-2-1 1-6-6 1Z"></path></svg>
+          <h3 style="font-family:'Cinzel',serif;font-size:15px;color:#F3F6FA;margin:20px 0 12px" data-i18n="use2Title">Flughafen- & VIP-Transfer</h3>
+          <p style="font-size:13.5px;line-height:1.7;color:#A9BDD0;margin:0;font-weight:300" data-i18n="use2Desc">Zustellung direkt zum Privatflughafen oder Hotel am Reiseziel — etwa an der Côte d’Azur, in den Alpen oder auf Mallorca.</p>
+        </div>
+        <div class="card reveal" data-reveal-id="usecase3" style="padding:36px 26px;transition-delay:.4s">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C7D4E0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10l8-6 8 6v10"></path><path d="M9 20v-7h6v7"></path><circle cx="12" cy="11" r="1.5"></circle></svg>
+          <h3 style="font-family:'Cinzel',serif;font-size:15px;color:#F3F6FA;margin:20px 0 12px" data-i18n="use3Title">Oldtimer & nicht zugelassene Fahrzeuge</h3>
+          <p style="font-size:13.5px;line-height:1.7;color:#A9BDD0;margin:0;font-weight:300" data-i18n="use3Desc">Sicherer Transport aus Garage, Museum oder Messe — ganz ohne Fahrt im öffentlichen Straßenverkehr.</p>
+        </div>
+        <div class="card reveal" data-reveal-id="usecase4" style="padding:36px 26px;transition-delay:.56s">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C7D4E0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="14" height="11" rx="1.5"></rect><path d="m17 10 4-2v8l-4-2"></path><circle cx="10" cy="12.5" r="2.3"></circle></svg>
+          <h3 style="font-family:'Cinzel',serif;font-size:15px;color:#F3F6FA;margin:20px 0 12px" data-i18n="use4Title">Prototypen & Erlkönige</h3>
+          <p style="font-size:13.5px;line-height:1.7;color:#A9BDD0;margin:0;font-weight:300" data-i18n="use4Desc">Absoluter Schutz vor neugierigen Blicken und Fotografen während Testfahrten und Überführungen.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EQUIPMENT -->
+  <div style="max-width:1240px;margin:0 auto;padding:110px 28px 100px">
+    <div class="reveal" data-reveal-id="equipHead" style="text-align:center;margin-bottom:64px">
+      <div style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#8FA4B8;margin-bottom:16px" data-i18n="equipKicker">Ausstattung</div>
+      <h2 class="section-title" style="font-family:'Cinzel',serif;font-size:34px;color:#F3F6FA;font-weight:600" data-i18n="equipTitle">Technik, der Sie vertrauen können</h2>
+    </div>
+    <div class="grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:26px">
+      <div class="card reveal" data-reveal-id="equip1" style="padding:48px 42px;display:flex;gap:26px;align-items:flex-start;transition-delay:.08s">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C7D4E0" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0" aria-hidden="true"><path d="M2 17h3l3-6h8l4 4h2"></path><circle cx="7" cy="19" r="2"></circle><circle cx="17" cy="19" r="2"></circle><path d="M2 17v-2h2"></path></svg>
+        <div>
+          <h3 style="font-family:'Cinzel',serif;font-size:18px;color:#F3F6FA;margin:0 0 14px" data-i18n="equip1Title">Spezielle Low-Clearance-Rampen</h3>
+          <p style="font-size:14.5px;line-height:1.8;color:#A9BDD0;margin:0;font-weight:300" data-i18n="equip1Desc">Für das sichere Verladen tiefergelegter und sportlicher Fahrzeuge — von Ferrari über Lamborghini bis McLaren, ganz ohne Bodenkontakt.</p>
+        </div>
+      </div>
+      <div class="card reveal" data-reveal-id="equip2" style="padding:48px 42px;display:flex;gap:26px;align-items:flex-start;transition-delay:.28s">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C7D4E0" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0" aria-hidden="true"><path d="M4 18a8 8 0 0 1 16 0"></path><line x1="12" y1="18" x2="12" y2="22"></line><line x1="7" y1="19" x2="6" y2="22"></line><line x1="17" y1="19" x2="18" y2="22"></line></svg>
+        <div>
+          <h3 style="font-family:'Cinzel',serif;font-size:18px;color:#F3F6FA;margin:0 0 14px" data-i18n="equip2Title">Vollständiger Witterungsschutz</h3>
+          <p style="font-size:14.5px;line-height:1.8;color:#A9BDD0;margin:0;font-weight:300" data-i18n="equip2Desc">Geschützt vor Regen, Hagel, Streusalz und Steinschlag — vom ersten bis zum letzten Kilometer der Strecke.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLEET / GALLERY -->
+  <div id="fleet" style="max-width:1200px;margin:0 auto;padding:110px 28px 100px">
+    <div class="reveal" data-reveal-id="fleetHead" style="text-align:center;margin-bottom:76px">
+      <div style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#8FA4B8;margin-bottom:16px" data-i18n="fleetKicker">Unser Fuhrpark</div>
+      <h2 class="section-title" style="font-family:'Cinzel',serif;font-size:34px;color:#F3F6FA;font-weight:600" data-i18n="fleetTitle">Flotte in Aktion</h2>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:84px">
+
+      <!-- Fleet row 1 -->
+      <div class="fleet-row reveal" data-reveal-id="fleet1" style="display:flex;flex-wrap:wrap;align-items:center;gap:48px;transition-delay:.08s">
+        <div class="fleet-media" style="order:1;flex:1 1 440px;position:relative;border-radius:3px;overflow:hidden;border:1px solid rgba(199,212,224,.22);aspect-ratio:4/3;box-shadow:0 20px 50px rgba(0,0,0,.35)">
+          <img src="fleet1.jpg" alt="Abholung eines Fahrzeugs direkt beim Kunden vor Ort" data-i18n-alt="fleet1Alt" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,24,38,0) 35%,rgba(10,24,38,.82) 100%)"></div>
+          <div style="position:absolute;left:20px;right:20px;bottom:18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#EAF0F5" data-i18n="fleet1Caption">Abholung direkt vor Ort</div>
+        </div>
+        <div class="fleet-text" style="order:2;flex:1 1 320px;min-width:260px">
+          <h3 style="font-family:'Cinzel',serif;font-size:21px;color:#F3F6FA;margin:0 0 14px;letter-spacing:.01em" data-i18n="fleet1Heading">Persönliche Übergabe</h3>
+          <p style="font-size:15px;line-height:1.8;color:#A9BDD0;margin:0;font-weight:300" data-i18n="fleet1Desc">Wir holen Ihr Fahrzeug dort ab, wo es steht — ob Autohaus, Privatadresse oder Messegelände.</p>
+        </div>
+      </div>
+
+      <!-- Fleet row 2 (visually reversed) -->
+      <div class="fleet-row reveal" data-reveal-id="fleet2" style="display:flex;flex-wrap:wrap;align-items:center;gap:48px;transition-delay:.26s">
+        <div class="fleet-media" style="order:2;flex:1 1 440px;position:relative;border-radius:3px;overflow:hidden;border:1px solid rgba(199,212,224,.22);aspect-ratio:4/3;box-shadow:0 20px 50px rgba(0,0,0,.35)">
+          <img src="fleet2.jpg" alt="Geschlossener Spezialanhänger mit MoveOn Logo" data-i18n-alt="fleet2Alt" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,24,38,0) 35%,rgba(10,24,38,.82) 100%)"></div>
+          <div style="position:absolute;left:20px;right:20px;bottom:18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#EAF0F5" data-i18n="fleet2Caption">Geschlossener Spezialanhänger</div>
+        </div>
+        <div class="fleet-text" style="order:1;flex:1 1 320px;min-width:260px">
+          <h3 style="font-family:'Cinzel',serif;font-size:21px;color:#F3F6FA;margin:0 0 14px;letter-spacing:.01em" data-i18n="fleet2Heading">Vollständig geschlossen</h3>
+          <p style="font-size:15px;line-height:1.8;color:#A9BDD0;margin:0;font-weight:300" data-i18n="fleet2Desc">Jedes Fahrzeug reist unbrandet und wettergeschützt in unserem Spezialanhänger.</p>
+        </div>
+      </div>
+
+      <!-- Fleet row 3 -->
+      <div class="fleet-row reveal" data-reveal-id="fleet3" style="display:flex;flex-wrap:wrap;align-items:center;gap:48px;transition-delay:.44s">
+        <div class="fleet-media" style="order:1;flex:1 1 440px;position:relative;border-radius:3px;overflow:hidden;border:1px solid rgba(199,212,224,.22);aspect-ratio:4/3;box-shadow:0 20px 50px rgba(0,0,0,.35)">
+          <img src="fleet3.jpg" alt="Fahrzeug im geschlossenen Anhänger gesichert" data-i18n-alt="fleet3Alt" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 32%">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,24,38,0) 35%,rgba(10,24,38,.82) 100%)"></div>
+          <div style="position:absolute;left:20px;right:20px;bottom:18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#EAF0F5" data-i18n="fleet3Caption">Fahrzeug gesichert im Innenraum</div>
+        </div>
+        <div class="fleet-text" style="order:2;flex:1 1 320px;min-width:260px">
+          <h3 style="font-family:'Cinzel',serif;font-size:21px;color:#F3F6FA;margin:0 0 14px;letter-spacing:.01em" data-i18n="fleet3Heading">Sicher verladen</h3>
+          <p style="font-size:15px;line-height:1.8;color:#A9BDD0;margin:0;font-weight:300" data-i18n="fleet3Desc">Fixiert, dokumentiert und geschützt — bereit für die Fahrt quer durch Europa.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PROCESS -->
+  <div id="process" style="background:rgba(199,212,224,.03);border-top:1px solid rgba(199,212,224,.14);border-bottom:1px solid rgba(199,212,224,.14)">
+    <div style="max-width:1100px;margin:0 auto;padding:110px 28px 110px">
+      <div class="reveal" data-reveal-id="processHead" style="text-align:center;margin-bottom:76px">
+        <div style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#8FA4B8;margin-bottom:16px" data-i18n="processKicker">So einfach geht’s</div>
+        <h2 class="section-title" style="font-family:'Cinzel',serif;font-size:34px;color:#F3F6FA;font-weight:600" data-i18n="processTitle">Transparenter Ablauf in 3 Schritten</h2>
+      </div>
+      <div class="process-row" style="display:flex;align-items:flex-start;position:relative">
+        <div class="process-line" style="position:absolute;top:26px;left:60px;right:60px;height:1px;background:rgba(199,212,224,.3)"></div>
+        <div class="process-step reveal" data-reveal-id="proc1" style="flex:1;text-align:center;padding:0 18px;position:relative;transition-delay:.08s">
+          <div class="process-num" style="width:52px;height:52px;border-radius:50%;border:1px solid #C7D4E0;background:#0A1826;display:flex;align-items:center;justify-content:center;margin:0 auto 26px;font-family:'Cinzel',serif;font-size:18px;color:#F3F6FA;position:relative;z-index:1">01</div>
+          <h3 style="font-family:'Cinzel',serif;font-size:16px;color:#F3F6FA;margin:0 0 12px" data-i18n="proc1Title">Anfrage & schnelles Angebot</h3>
+          <p style="font-size:14px;line-height:1.75;color:#A9BDD0;margin:0;font-weight:300" data-i18n="proc1Desc">Kurzes Formular ausfüllen oder direkt per WhatsApp Kontakt aufnehmen.</p>
+        </div>
+        <div class="process-step reveal" data-reveal-id="proc2" style="flex:1;text-align:center;padding:0 18px;position:relative;transition-delay:.28s">
+          <div class="process-num" style="width:52px;height:52px;border-radius:50%;border:1px solid #C7D4E0;background:#0A1826;display:flex;align-items:center;justify-content:center;margin:0 auto 26px;font-family:'Cinzel',serif;font-size:18px;color:#F3F6FA;position:relative;z-index:1">02</div>
+          <h3 style="font-family:'Cinzel',serif;font-size:16px;color:#F3F6FA;margin:0 0 12px" data-i18n="proc2Title">Fahrzeugübernahme</h3>
+          <p style="font-size:14px;line-height:1.75;color:#A9BDD0;margin:0;font-weight:300" data-i18n="proc2Desc">Wir kommen zur vereinbarten Adresse, erstellen das digitale Zustandsprotokoll und verladen Ihr Fahrzeug.</p>
+        </div>
+        <div class="process-step reveal" data-reveal-id="proc3" style="flex:1;text-align:center;padding:0 18px;position:relative;transition-delay:.48s">
+          <div class="process-num" style="width:52px;height:52px;border-radius:50%;border:1px solid #C7D4E0;background:#0A1826;display:flex;align-items:center;justify-content:center;margin:0 auto 26px;font-family:'Cinzel',serif;font-size:18px;color:#F3F6FA;position:relative;z-index:1">03</div>
+          <h3 style="font-family:'Cinzel',serif;font-size:16px;color:#F3F6FA;margin:0 0 12px" data-i18n="proc3Title">Sichere Zustellung</h3>
+          <p style="font-size:14px;line-height:1.75;color:#A9BDD0;margin:0;font-weight:300" data-i18n="proc3Desc">Transport mit durchgehendem GPS-Tracking und direkter Kommunikation bis zur Schlüsselübergabe am Zielort.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div id="faq" style="max-width:860px;margin:0 auto;padding:110px 28px 100px">
+    <div class="reveal" data-reveal-id="faqHead" style="text-align:center;margin-bottom:56px">
+      <div style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#8FA4B8;margin-bottom:16px" data-i18n="faqKicker">Häufige Fragen</div>
+      <h2 class="section-title" style="font-family:'Cinzel',serif;font-size:34px;color:#F3F6FA;font-weight:600" data-i18n="faqTitle">Gut zu wissen</h2>
+    </div>
+
+    <div style="border-top:1px solid rgba(199,212,224,.16)">
+      <div style="border-bottom:1px solid rgba(199,212,224,.16)">
+        <button class="faq-q" type="button" data-faq="1" aria-expanded="false">
+          <span data-i18n="faq1Q">Muss das Fahrzeug zugelassen oder fahrbereit sein?</span>
+          <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner" data-i18n="faq1A">Nein. Wir transportieren auch nicht zugelassene, nicht fahrbereite und nicht versicherte Fahrzeuge problemlos.</div></div>
+      </div>
+      <div style="border-bottom:1px solid rgba(199,212,224,.16)">
+        <button class="faq-q" type="button" data-faq="2" aria-expanded="false">
+          <span data-i18n="faq2Q">Wie funktioniert die Versicherung während des Transports?</span>
+          <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner" data-i18n="faq2A">Jeder Transport ist durch eine vollständige Transportversicherung abgedeckt. Details und Deckungssummen besprechen wir gerne persönlich mit Ihnen vor der Buchung.</div></div>
+      </div>
+      <div style="border-bottom:1px solid rgba(199,212,224,.16)">
+        <button class="faq-q" type="button" data-faq="3" aria-expanded="false">
+          <span data-i18n="faq3Q">Wie weit im Voraus sollte ich einen Termin buchen?</span>
+          <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner" data-i18n="faq3A">Wir empfehlen, mindestens 5–7 Tage im Voraus anzufragen. Kurzfristige und dringende Transporte sind nach Verfügbarkeit ebenfalls möglich — sprechen Sie uns direkt an.</div></div>
+      </div>
+      <div style="border-bottom:1px solid rgba(199,212,224,.16)">
+        <button class="faq-q" type="button" data-faq="4" aria-expanded="false">
+          <span data-i18n="faq4Q">Kann ich direkt mit dem Fahrer kommunizieren?</span>
+          <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner" data-i18n="faq4A">Ja, immer. Sie erhalten die direkte Telefonnummer des Fahrers für die gesamte Dauer des Transports.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div id="contact" style="background:rgba(199,212,224,.03);border-top:1px solid rgba(199,212,224,.14);border-bottom:1px solid rgba(199,212,224,.14)">
+    <div style="max-width:720px;margin:0 auto;padding:110px 28px 110px">
+      <div class="reveal" data-reveal-id="contactHead" style="text-align:center;margin-bottom:50px">
+        <div style="font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#8FA4B8;margin-bottom:16px" data-i18n="contactKicker">Kontakt</div>
+        <h2 class="section-title" style="font-family:'Cinzel',serif;font-size:34px;color:#F3F6FA;font-weight:600;margin-bottom:16px" data-i18n="contactTitle">Jetzt unverbindlich anfragen</h2>
+        <p style="font-size:15px;color:#A9BDD0;font-weight:300;max-width:460px;margin:0 auto" data-i18n="contactSub">Füllen Sie das Formular aus — wir melden uns schnellstmöglich mit einem persönlichen Angebot.</p>
+      </div>
+
+      <form id="contactForm" style="display:flex;flex-direction:column;gap:22px">
+        <div class="grid-form" style="display:grid;grid-template-columns:1fr 1fr;gap:22px">
+          <div class="field">
+            <label for="pickup" data-i18n="fieldPickup">Abholort</label>
+            <input id="pickup" type="text" placeholder="München, DE" required>
+          </div>
+          <div class="field">
+            <label for="dropoff" data-i18n="fieldDropoff">Zielort</label>
+            <input id="dropoff" type="text" placeholder="Nizza, FR" required>
+          </div>
+        </div>
+        <div class="grid-form" style="display:grid;grid-template-columns:1fr 1fr;gap:22px">
+          <div class="field">
+            <label for="vehicle" data-i18n="fieldVehicle">Fahrzeugmodell / Marke</label>
+            <input id="vehicle" type="text" placeholder="Ferrari 296 GTB" required>
+          </div>
+          <div class="field">
+            <label for="date" data-i18n="fieldDate">Wunschtermin</label>
+            <input id="date" type="text" placeholder="15.11.2026" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="contactField" data-i18n="fieldContact">Telefon oder E-Mail</label>
+          <input id="contactField" type="text" placeholder="+49 ... / name@email.com" required>
+        </div>
+
+        <button class="btn btn-primary" type="submit" style="margin-top:12px;width:100%" data-i18n="formSubmit">Anfrage per WhatsApp senden</button>
+        <p style="text-align:center;font-size:12.5px;color:#718699;margin:0" data-i18n="formNotice">Mit dem Absenden öffnet sich WhatsApp mit Ihrer vorausgefüllten Anfrage.</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="max-width:1240px;margin:0 auto;padding:80px 28px 50px">
+    <div class="footer-row" style="display:flex;justify-content:space-between;gap:60px;flex-wrap:wrap">
+      <div style="max-width:320px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px">
+          <img src="logo.png" alt="MoveOn Logistics" style="height:24px;width:auto;display:block">
+          <span style="font-family:'Cinzel',serif;font-size:15px;letter-spacing:.08em;color:#F3F6FA">MOVEON LOGISTICS</span>
+        </div>
+        <p style="font-size:13.5px;line-height:1.8;color:#8FA4B8;font-weight:300;margin:0" data-i18n="footerBlurb">Exklusiver, geschlossener Fahrzeugtransport für außergewöhnliche Automobile. Europaweit, diskret und mit persönlicher Betreuung von Anfang bis Ende.</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:13px">
+        <div style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#60758B;margin-bottom:6px" data-i18n="footerContactLabel">Kontakt</div>
+        <a href="tel:+491719096969" style="display:flex;align-items:center;gap:10px;font-size:14px;color:#C7D4E0">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5c0 9 7 16 16 16l3-4-6-3-2 2c-3-1.5-5-3.5-6-6l2-2-3-6Z"></path></svg>
+          +49 171 9096969
+        </a>
+        <a href="mailto:info@moveon-logistics.de" style="display:flex;align-items:center;gap:10px;font-size:14px;color:#C7D4E0">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg>
+          info@moveon-logistics.de
+        </a>
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#C7D4E0">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="10" r="3"></circle><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"></path></svg>
+          Industriestraße 10, Altenstadt
+        </div>
+        <a href="https://moveon-logistics.de/transport" style="display:flex;align-items:center;gap:10px;font-size:14px;color:#C7D4E0">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><line x1="3" y1="12" x2="21" y2="12"></line><path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18"></path></svg>
+          moveon-logistics.de
+        </a>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:13px">
+        <div style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#60758B;margin-bottom:6px" data-i18n="footerLinksLabel">Navigation</div>
+        <a class="nav-link" href="#pillars" style="opacity:.85" data-i18n="navBenefits">Vorteile</a>
+        <a class="nav-link" href="#usecases" style="opacity:.85" data-i18n="navUseCases">Einsatzbereiche</a>
+        <a class="nav-link" href="#fleet" style="opacity:.85" data-i18n="fleetKicker">Unser Fuhrpark</a>
+        <a class="nav-link" href="#process" style="opacity:.85" data-i18n="navProcess">Ablauf</a>
+        <a class="nav-link" href="#faq" style="opacity:.85" data-i18n="navFaq">FAQ</a>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start">
+        <div style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#60758B">EUROPAWEIT</div>
+        <a class="btn btn-outline wa-link" href="#" target="_blank" rel="noopener" style="padding:13px 24px;font-size:12px" data-i18n="ctaWhatsapp">WhatsApp Direktkontakt</a>
+      </div>
+    </div>
+
+    <hr style="border:none;height:1px;background:rgba(199,212,224,.14);margin:66px 0 24px" />
+    <div style="text-align:center;font-size:12px;color:#60758B">© 2026 MoveOn Logistics GmbH. All rights reserved. | Crafted by Demir Erović</div>
+  </div>
+
+  <div class="fab-stack">
+    <a class="fab-btn fab-sub fab-pos-1 wa-link" href="#" target="_blank" rel="noopener" id="fabWa">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-8.9 8.4 8.6 8.6 0 0 1-3.9-1L3 20l1.2-5a8.3 8.3 0 0 1-1.1-4.2A8.4 8.4 0 0 1 11.9 2a8.4 8.4 0 0 1 9.1 9.5Z"></path><path d="M8.5 9.5c.3 2.5 2.5 4.7 5 5"></path></svg>
+    </a>
+    <a class="fab-btn fab-sub fab-pos-2" href="tel:+491719096969" id="fabCall">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5c0 9 7 16 16 16l3-4-6-3-2 2c-3-1.5-5-3.5-6-6l2-2-3-6Z"></path></svg>
+    </a>
+    <a class="fab-btn fab-sub fab-pos-3" href="https://t.me/+491719096969" target="_blank" rel="noopener" id="fabTelegram">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg>
+    </a>
+    <button type="button" class="fab-btn fab-main" id="fabMain" aria-expanded="false">
+      <svg class="fab-icon-closed" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5c0 9 7 16 16 16l3-4-6-3-2 2c-3-1.5-5-3.5-6-6l2-2-3-6Z"></path></svg>
+      <svg class="fab-icon-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="M6 6l12 12"></path></svg>
+    </button>
+  </div>
+
+</div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  var COPY = {
+    de: {
+      navBenefits: 'Vorteile', navUseCases: 'Einsatzbereiche', navProcess: 'Ablauf', navFaq: 'FAQ', navContact: 'Kontakt',
+      heroKicker: 'Sleep Well. We Move On.',
+      heroTitleLine1: 'GESCHLOSSENER TRANSPORT.',
+      heroTitleLine2: 'EUROPAWEIT.',
+      heroSubtitle: 'Diskreter, sicherer und zuverlässiger Transport Ihres Fahrzeugs in einer spezialisierten geschlossenen Anhängerkonstruktion — ganz ohne Werbebeschriftung, von Tür zu Tür.',
+      ctaPrimary: 'Jetzt Transport anfragen',
+      ctaWhatsapp: 'WhatsApp Direktkontakt',
+      badgeGps: 'Live-GPS-Tracking', badgeInsurance: 'Vollkasko-Transportversicherung', badgeSupport: '24/7 Erreichbarkeit',
+      pillarsKicker: 'Ihre Vorteile', pillarsTitle: 'Warum Eigentümer uns vertrauen',
+      pillar1Title: '100% Diskretion & Anonymität',
+      pillar1Desc: 'Transport im vollständig geschlossenen Anhänger — ohne Werbung und ohne Branding. Niemand auf der Autobahn erkennt, welches Fahrzeug sich darin befindet.',
+      pillar2Title: 'Live-GPS & Vollversicherung',
+      pillar2Desc: 'Unsere Fahrzeuge sind mit Echtzeit-GPS-Tracking ausgestattet und durch eine vollständige Transportversicherung abgesichert — für Ihre Ruhe während der gesamten Fahrt.',
+      pillar3Title: 'Direkter Fahrerkontakt, 24/7',
+      pillar3Desc: 'Keine Zwischenhändler, keine Callcenter. Sie erhalten die direkte Telefonnummer des Fahrers, der Ihr Fahrzeug transportiert.',
+      pillar4Title: 'Digitales Zustandsprotokoll',
+      pillar4Desc: 'Bei Übernahme und Übergabe erstellen wir eine detaillierte digitale Fotodokumentation Ihres Fahrzeugs — vollständig papierlos.',
+      useKicker: 'Einsatzbereiche', useTitle: 'Für jede Situation die passende Lösung',
+      use1Title: 'Kauf & Verkauf von Fahrzeugen', use1Desc: 'Sichere Zustellung vom Autohaus oder Privatverkäufer direkt an Ihre Adresse — ohne zusätzliche Kilometer auf der Uhr.',
+      use2Title: 'Flughafen- & VIP-Transfer', use2Desc: 'Zustellung direkt zum Privatflughafen oder Hotel am Reiseziel — etwa an der Côte d’Azur, in den Alpen oder auf Mallorca.',
+      use3Title: 'Oldtimer & nicht zugelassene Fahrzeuge', use3Desc: 'Sicherer Transport aus Garage, Museum oder Messe — ganz ohne Fahrt im öffentlichen Straßenverkehr.',
+      use4Title: 'Prototypen & Erlkönige', use4Desc: 'Absoluter Schutz vor neugierigen Blicken und Fotografen während Testfahrten und Überführungen.',
+      equipKicker: 'Ausstattung', equipTitle: 'Technik, der Sie vertrauen können',
+      equip1Title: 'Spezielle Low-Clearance-Rampen', equip1Desc: 'Für das sichere Verladen tiefergelegter und sportlicher Fahrzeuge — von Ferrari über Lamborghini bis McLaren, ganz ohne Bodenkontakt.',
+      equip2Title: 'Vollständiger Witterungsschutz', equip2Desc: 'Geschützt vor Regen, Hagel, Streusalz und Steinschlag — vom ersten bis zum letzten Kilometer der Strecke.',
+      fleetKicker: 'Unser Fuhrpark', fleetTitle: 'Flotte in Aktion',
+      fleet1Caption: 'Abholung direkt vor Ort', fleet1Heading: 'Persönliche Übergabe', fleet1Desc: 'Wir holen Ihr Fahrzeug dort ab, wo es steht — ob Autohaus, Privatadresse oder Messegelände.', fleet1Alt: 'Abholung eines Fahrzeugs direkt beim Kunden vor Ort',
+      fleet2Caption: 'Geschlossener Spezialanhänger', fleet2Heading: 'Vollständig geschlossen', fleet2Desc: 'Jedes Fahrzeug reist unbrandet und wettergeschützt in unserem Spezialanhänger.', fleet2Alt: 'Geschlossener Spezialanhänger mit MoveOn Logo',
+      fleet3Caption: 'Fahrzeug gesichert im Innenraum', fleet3Heading: 'Sicher verladen', fleet3Desc: 'Fixiert, dokumentiert und geschützt — bereit für die Fahrt quer durch Europa.', fleet3Alt: 'Fahrzeug im geschlossenen Anhänger gesichert',
+      processKicker: 'So einfach geht’s', processTitle: 'Transparenter Ablauf in 3 Schritten',
+      proc1Title: 'Anfrage & schnelles Angebot', proc1Desc: 'Kurzes Formular ausfüllen oder direkt per WhatsApp Kontakt aufnehmen.',
+      proc2Title: 'Fahrzeugübernahme', proc2Desc: 'Wir kommen zur vereinbarten Adresse, erstellen das digitale Zustandsprotokoll und verladen Ihr Fahrzeug.',
+      proc3Title: 'Sichere Zustellung', proc3Desc: 'Transport mit durchgehendem GPS-Tracking und direkter Kommunikation bis zur Schlüsselübergabe am Zielort.',
+      faqKicker: 'Häufige Fragen', faqTitle: 'Gut zu wissen',
+      faq1Q: 'Muss das Fahrzeug zugelassen oder fahrbereit sein?', faq1A: 'Nein. Wir transportieren auch nicht zugelassene, nicht fahrbereite und nicht versicherte Fahrzeuge problemlos.',
+      faq2Q: 'Wie funktioniert die Versicherung während des Transports?', faq2A: 'Jeder Transport ist durch eine vollständige Transportversicherung abgedeckt. Details und Deckungssummen besprechen wir gerne persönlich mit Ihnen vor der Buchung.',
+      faq3Q: 'Wie weit im Voraus sollte ich einen Termin buchen?', faq3A: 'Wir empfehlen, mindestens 5–7 Tage im Voraus anzufragen. Kurzfristige und dringende Transporte sind nach Verfügbarkeit ebenfalls möglich — sprechen Sie uns direkt an.',
+      faq4Q: 'Kann ich direkt mit dem Fahrer kommunizieren?', faq4A: 'Ja, immer. Sie erhalten die direkte Telefonnummer des Fahrers für die gesamte Dauer des Transports.',
+      contactKicker: 'Kontakt', contactTitle: 'Jetzt unverbindlich anfragen',
+      contactSub: 'Füllen Sie das Formular aus — wir melden uns schnellstmöglich mit einem persönlichen Angebot.',
+      fieldPickup: 'Abholort', fieldDropoff: 'Zielort', fieldVehicle: 'Fahrzeugmodell / Marke', fieldDate: 'Wunschtermin', fieldContact: 'Telefon oder E-Mail',
+      formSubmit: 'Anfrage per WhatsApp senden',
+      formNotice: 'Mit dem Absenden öffnet sich WhatsApp mit Ihrer vorausgefüllten Anfrage.',
+      footerBlurb: 'Exklusiver, geschlossener Fahrzeugtransport für außergewöhnliche Automobile. Europaweit, diskret und mit persönlicher Betreuung von Anfang bis Ende.',
+      footerContactLabel: 'Kontakt', footerLinksLabel: 'Navigation',
+      waPrefill: 'Hallo MoveOn Logistics, ich interessiere mich für einen geschlossenen Fahrzeugtransport.',
+      waFormPrefix: 'Neue Transportanfrage',
+      waL1: 'Abholort', waL2: 'Zielort', waL3: 'Fahrzeug', waL4: 'Wunschtermin', waL5: 'Kontakt'
+    },
+    en: {
+      navBenefits: 'Benefits', navUseCases: 'Use Cases', navProcess: 'Process', navFaq: 'FAQ', navContact: 'Contact',
+      heroKicker: 'Sleep Well. We Move On.',
+      heroTitleLine1: 'FULLY ENCLOSED TRANSPORT.',
+      heroTitleLine2: 'EUROPE-WIDE.',
+      heroSubtitle: 'Discreet, secure and reliable transport of your vehicle in a dedicated enclosed trailer — completely unbranded, door to door.',
+      ctaPrimary: 'Request Transport Now',
+      ctaWhatsapp: 'WhatsApp Direct Contact',
+      badgeGps: 'Live GPS Tracking', badgeInsurance: 'Full Transport Insurance', badgeSupport: '24/7 Availability',
+      pillarsKicker: 'Your Benefits', pillarsTitle: 'Why Owners Trust Us',
+      pillar1Title: '100% Discretion & Anonymity',
+      pillar1Desc: 'Transport in a fully enclosed trailer — no advertising, no branding. No one on the motorway can tell which vehicle is inside.',
+      pillar2Title: 'Live GPS & Full Insurance',
+      pillar2Desc: 'Our vehicles are equipped with real-time GPS tracking and covered by comprehensive transport insurance — complete peace of mind throughout the journey.',
+      pillar3Title: 'Direct Driver Contact, 24/7',
+      pillar3Desc: 'No middlemen, no call centres. You get the direct phone number of the driver transporting your vehicle.',
+      pillar4Title: 'Digital Condition Report',
+      pillar4Desc: 'At pickup and delivery we create a detailed digital photo record of your vehicle — fully paperless.',
+      useKicker: 'Use Cases', useTitle: 'The Right Solution for Every Situation',
+      use1Title: 'Vehicle Purchase & Sale', use1Desc: 'Secure delivery from a dealership or private seller straight to your door — without adding mileage to the odometer.',
+      use2Title: 'Airport & VIP Transfer', use2Desc: 'Delivery directly to a private airport or hotel at your destination — along the Côte d’Azur, in the Alps or on Mallorca.',
+      use3Title: 'Classic Cars & Unregistered Vehicles', use3Desc: 'Secure transport from a garage, museum or show — entirely off public roads.',
+      use4Title: 'Prototypes & Test Vehicles', use4Desc: 'Absolute protection from prying eyes and photographers during test drives and transfers.',
+      equipKicker: 'Equipment', equipTitle: 'Equipment You Can Trust',
+      equip1Title: 'Specialised Low-Clearance Ramps', equip1Desc: 'For safe loading of lowered and sports vehicles — from Ferrari to Lamborghini to McLaren, with zero ground contact.',
+      equip2Title: 'Complete Weather Protection', equip2Desc: 'Shielded from rain, hail, road salt and stone chips — from the first kilometre to the last.',
+      fleetKicker: 'Our Fleet', fleetTitle: 'Fleet in Action',
+      fleet1Caption: 'Pickup, Wherever You Are', fleet1Heading: 'Personal Handover', fleet1Desc: 'We collect your vehicle exactly where it stands — dealership, private address or show venue.', fleet1Alt: 'Vehicle pickup at the client\'s location',
+      fleet2Caption: 'Fully Enclosed Trailer', fleet2Heading: 'Completely Enclosed', fleet2Desc: 'Every vehicle travels unbranded and shielded from the weather inside our dedicated trailer.', fleet2Alt: 'Fully enclosed special trailer with MoveOn logo',
+      fleet3Caption: 'Vehicle Secured Inside', fleet3Heading: 'Safely Loaded', fleet3Desc: 'Strapped down, documented and protected — ready for the drive across Europe.', fleet3Alt: 'Vehicle secured inside the enclosed trailer',
+      processKicker: 'How It Works', processTitle: 'A Transparent 3-Step Process',
+      proc1Title: 'Enquiry & Fast Quote', proc1Desc: 'Fill out a short form or contact us directly via WhatsApp.',
+      proc2Title: 'Vehicle Pickup', proc2Desc: 'We arrive at the agreed address, create the digital condition report and load your vehicle.',
+      proc3Title: 'Secure Delivery', proc3Desc: 'Transport with continuous GPS tracking and direct communication through to key handover at the destination.',
+      faqKicker: 'Frequently Asked', faqTitle: 'Good to Know',
+      faq1Q: 'Does the vehicle need to be registered or drivable?', faq1A: 'No. We transport unregistered, non-drivable and uninsured vehicles without any issue.',
+      faq2Q: 'How does insurance work during transport?', faq2A: 'Every transport is covered by comprehensive transport insurance. We’re happy to discuss details and coverage amounts with you personally before booking.',
+      faq3Q: 'How far in advance should I book?', faq3A: 'We recommend enquiring at least 5–7 days in advance. Short-notice and urgent transports are also possible, subject to availability — just reach out directly.',
+      faq4Q: 'Can I communicate directly with the driver?', faq4A: 'Yes, always. You receive the driver’s direct phone number for the entire duration of the transport.',
+      contactKicker: 'Contact', contactTitle: 'Request a Free Quote',
+      contactSub: 'Fill out the form — we’ll get back to you as quickly as possible with a personal quote.',
+      fieldPickup: 'Pickup Location', fieldDropoff: 'Delivery Location', fieldVehicle: 'Vehicle Model / Make', fieldDate: 'Preferred Date', fieldContact: 'Phone or Email',
+      formSubmit: 'Send Request via WhatsApp',
+      formNotice: 'Submitting opens WhatsApp with your pre-filled enquiry.',
+      footerBlurb: 'Exclusive, fully enclosed vehicle transport for extraordinary automobiles. Europe-wide, discreet, and with personal care from start to finish.',
+      footerContactLabel: 'Contact', footerLinksLabel: 'Navigation',
+      waPrefill: 'Hello MoveOn Logistics, I’m interested in an enclosed vehicle transport.',
+      waFormPrefix: 'New transport request',
+      waL1: 'Pickup', waL2: 'Delivery', waL3: 'Vehicle', waL4: 'Preferred date', waL5: 'Contact'
+    }
+  };
+
+  var currentLang = 'de';
+
+  function applyLang(lang){
+    currentLang = COPY[lang] ? lang : 'de';
+    var t = COPY[currentLang];
+    document.documentElement.lang = currentLang;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.textContent = t[key];
+    });
+    document.querySelectorAll('[data-i18n-alt]').forEach(function(el){
+      var key = el.getAttribute('data-i18n-alt');
+      if (t[key] !== undefined) el.alt = t[key];
+    });
+    document.getElementById('langDE').classList.toggle('is-active', currentLang === 'de');
+    document.getElementById('langEN').classList.toggle('is-active', currentLang === 'en');
+
+    var waHref = 'https://wa.me/491719096969?text=' + encodeURIComponent(t.waPrefill);
+    document.querySelectorAll('.wa-link').forEach(function(a){ a.href = waHref; });
+  }
+
+  document.getElementById('langDE').addEventListener('click', function(){ applyLang('de'); });
+  document.getElementById('langEN').addEventListener('click', function(){ applyLang('en'); });
+
+  // ---------- FAQ accordion ----------
+  document.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('.faq-q').forEach(function(b){
+        b.setAttribute('aria-expanded', 'false');
+        b.querySelector('.faq-chevron').classList.remove('is-open');
+        var a = b.nextElementSibling;
+        a.classList.remove('is-open');
+        a.style.maxHeight = '0px';
+      });
+      if (!isOpen){
+        btn.setAttribute('aria-expanded', 'true');
+        btn.querySelector('.faq-chevron').classList.add('is-open');
+        var ans = btn.nextElementSibling;
+        ans.classList.add('is-open');
+        ans.style.maxHeight = ans.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // ---------- contact form -> WhatsApp ----------
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var t = COPY[currentLang];
+    var pickup = document.getElementById('pickup').value;
+    var dropoff = document.getElementById('dropoff').value;
+    var vehicle = document.getElementById('vehicle').value;
+    var date = document.getElementById('date').value;
+    var contact = document.getElementById('contactField').value;
+    var lines = [
+      t.waFormPrefix + ':',
+      t.waL1 + ': ' + (pickup || '-'),
+      t.waL2 + ': ' + (dropoff || '-'),
+      t.waL3 + ': ' + (vehicle || '-'),
+      t.waL4 + ': ' + (date || '-'),
+      t.waL5 + ': ' + (contact || '-')
+    ];
+    var url = 'https://wa.me/491719096969?text=' + encodeURIComponent(lines.join('\n'));
+    window.open(url, '_blank', 'noopener');
+  });
+
+  // ---------- hero mouse parallax (car only — skyline now auto-scrolls) ----------
+  var heroZone = document.getElementById('heroZone');
+  var heroArtInner = document.getElementById('heroArtInner');
+  heroZone.addEventListener('mousemove', function(e){
+    var rect = heroZone.getBoundingClientRect();
+    var relX = (e.clientX - rect.left) / rect.width - 0.5;
+    var relY = (e.clientY - rect.top) / rect.height - 0.5;
+    var rotateY = relX * 10;
+    var rotateX = -relY * 7;
+    heroArtInner.style.transform = 'rotateX(' + rotateX.toFixed(2) + 'deg) rotateY(' + rotateY.toFixed(2) + 'deg) scale(1.02)';
+  });
+  heroZone.addEventListener('mouseleave', function(){
+    heroArtInner.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+  });
+
+  // ---------- hero star field ----------
+  (function(){
+    var field = document.getElementById('starField');
+    if (!field) return;
+    // star-field now lives inside the scrolling (double-width) sky track, so it
+    // travels together with the buildings. Each star is placed twice — once in
+    // each building copy's half of the track — so the loop stays seamless.
+    var count = 12;
+    function makeStar(leftPct, bottomPct, size, dur, delay){
+      var s = document.createElement('div');
+      s.className = 'star';
+      s.style.bottom = bottomPct + '%';
+      s.style.left = leftPct + '%';
+      s.style.width = size + 'px';
+      s.style.height = size + 'px';
+      s.style.animationDuration = dur + 's';
+      s.style.animationDelay = delay + 's';
+      field.appendChild(s);
+    }
+    function buildStars(){
+      field.innerHTML = '';
+      // object-fit:cover crops the skyline image differently depending on the
+      // hero's own aspect ratio (a short/wide window crops away more of the top
+      // "sky" than a tall/narrow one), so a fixed % band only clears the
+      // buildings for one particular window shape. On desktop we instead compute
+      // where the tallest spire actually lands, from the image's real proportions
+      // and the hero's current size, so it works at any window width/height.
+      var isDesktop = window.innerWidth > 780;
+      var buildingTopPct = 78; // safe high fallback for a typical desktop crop
+      if (isDesktop){
+        var heroEl = document.getElementById('heroZone');
+        var skyImg = document.querySelector('.hero-skyline-img');
+        if (heroEl && skyImg && skyImg.naturalWidth && heroEl.clientHeight){
+          var cw = heroEl.clientWidth, ch = heroEl.clientHeight;
+          var iw = skyImg.naturalWidth, ih = skyImg.naturalHeight;
+          var scale = Math.max(cw / iw, ch / ih); // object-fit:cover scale factor
+          var scaledH = ih * scale;
+          var visibleFrac = Math.min(1, ch / scaledH); // fraction of the image's height still visible after the cover-crop
+          // measured directly on hero-skyline.png: the topmost building/spire pixel
+          // sits 21.6% down from the image's top, i.e. 78.4% up from its bottom
+          var buildingTopFracOfImage = 0.784;
+          var renderedFrac = buildingTopFracOfImage / visibleFrac; // where that line lands as a % of the rendered (cropped) hero height
+          buildingTopPct = Math.min(92, renderedFrac * 100);
+        }
+      }
+      for (var i = 0; i < count; i++){
+        // measured from the bottom (where the buildings/car sit) so the stars land
+        // just above the skyline on every screen size, instead of a fixed % of the
+        // whole (much taller, on phones) hero section
+        var bottom = isDesktop ? (buildingTopPct + 6 + Math.random() * 10) : (Math.random() * 14 + 20);  // desktop: just above the measured building line, mobile: ~20%-34% up from the bottom
+        var left = Math.random() * 50;         // one building copy's share of the double-width track
+        var size = (Math.random() * 1.6 + 0.8).toFixed(1);
+        var dur = (Math.random() * 4 + 3).toFixed(1);
+        var delay = (Math.random() * 5).toFixed(1);
+        makeStar(left, bottom, size, dur, delay);
+        makeStar(left + 50, bottom, size, dur, delay);
+      }
+    }
+    var firstImg = document.querySelector('.hero-skyline-img');
+    if (firstImg && firstImg.complete && firstImg.naturalWidth){
+      buildStars();
+    } else if (firstImg){
+      firstImg.addEventListener('load', buildStars, { once: true });
+      // fallback in case the load event is missed (e.g. cached edge case)
+      setTimeout(buildStars, 1200);
+    } else {
+      buildStars();
+    }
+    // re-measure if the window is resized/rotated to a very different shape
+    var resizeTimer;
+    window.addEventListener('resize', function(){
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(buildStars, 300);
+    });
+  })();
+
+  // ---------- hero entrance animation ----------
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){
+      document.querySelectorAll('.hero-anim').forEach(function(el){ el.classList.add('is-visible'); });
+    });
+  });
+
+  // ---------- reveal-on-scroll ----------
+  var revealEls = document.querySelectorAll('[data-reveal-id]');
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          var el = entry.target;
+          // read the reveal-in timing (delay + duration) BEFORE adding is-visible,
+          // so a .card's slow .card.reveal transition is what we measure, not
+          // whatever shorter transition it falls back to afterwards
+          var cs = getComputedStyle(el);
+          var durations = cs.transitionDuration.split(',').map(parseFloat);
+          var delays = cs.transitionDelay.split(',').map(parseFloat);
+          var maxEnd = 0;
+          for (var d = 0; d < durations.length; d++){
+            maxEnd = Math.max(maxEnd, (durations[d] || 0) + (delays[d % delays.length] || 0));
+          }
+          el.classList.add('is-visible');
+          io.unobserve(el);
+          // once the slow reveal-in finishes, drop the 'reveal' class so a .card
+          // goes back to its normal fast hover transition instead of staying on
+          // the slow reveal timing forever (see the .card.reveal CSS rule).
+          // Also clear the inline transition-delay used to stagger the reveal —
+          // it's set directly on the element's style attribute, so removing the
+          // class alone doesn't clear it, and it would otherwise keep delaying
+          // every later hover transition (transform/border/shadow/background)
+          // by that same stagger amount (up to .56s), making hover feel laggy.
+          setTimeout(function(){
+            el.classList.remove('reveal');
+            el.style.transitionDelay = '';
+          }, maxEnd * 1000 + 150);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -12% 0px' });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  // ---------- floating action button ----------
+  var fabMain = document.getElementById('fabMain');
+  fabMain.addEventListener('click', function(){
+    var isOpen = fabMain.classList.toggle('is-open');
+    document.querySelectorAll('.fab-sub').forEach(function(el){ el.classList.toggle('is-open', isOpen); });
+    fabMain.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  // ---------- init ----------
+  applyLang('de');
+
+})();
+</script>
+</body>
+</html>
