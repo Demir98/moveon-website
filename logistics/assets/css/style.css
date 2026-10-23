@@ -478,3 +478,8 @@ textarea { resize: vertical; min-height: 130px; }
   .scroll-rail { display: none; }
 }
 
+/* ---------- meko pojavljivanje stranice (prelaz sa ulazne stranice) ---------- */
+html { background: #f4f6f8; }
+@keyframes pageFadeIn { from { opacity: 0; } to { opacity: 1; } }
+body { animation: pageFadeIn 0.55s ease both; }
+@media (prefers-reduced-motion: reduce) { body { animation: none; } }
