@@ -743,10 +743,25 @@ body{animation:pageFadeIn .55s ease both;}
   (function(){
     var field = document.getElementById('starField');
     if (!field) return;
-    // star-field now lives inside the scrolling (double-width) sky track, so it
-    // travels together with the buildings. Each star is placed twice — once in
-    // each building copy's half of the track — so the loop stays seamless.
+    // Zvezde zive unutar trake sa zgradama (duple sirine) pa putuju zajedno sa njom.
+    // Svaka se postavlja dva puta -- po jednom u svakoj kopiji -- da petlja bude bez seva.
     var count = 12;
+
+    // Nasumicne vrednosti se biraju JEDNOM i posle se samo ponovo koriste,
+    // da zvezde ne bi skakale pri svakoj promeni velicine prozora.
+    var seeds = [];
+    (function makeSeeds(){
+      for (var i = 0; i < count; i++){
+        seeds.push({
+          left:  Math.random() * 50,
+          t:     Math.random(),
+          size:  (Math.random() * 1.6 + 0.8).toFixed(1),
+          dur:   (Math.random() * 4 + 3).toFixed(1),
+          delay: (Math.random() * 5).toFixed(1)
+        });
+      }
+    })();
+
     function makeStar(leftPct, bottomPct, size, dur, delay){
       var s = document.createElement('div');
       s.className = 'star';
@@ -758,60 +773,71 @@ body{animation:pageFadeIn .55s ease both;}
       s.style.animationDelay = delay + 's';
       field.appendChild(s);
     }
+
+    // Gde se zavrsava najvisi toranj, izrazeno kao % visine trake, mereno od dna.
+    // Racuna se iz stvarnih proporcija slike i nacina na koji je iseckana
+    // (cover na desktopu, contain na telefonu), pa radi na svakom ekranu.
+    function buildingTopPct(){
+      var img = document.querySelector('.hero-skyline-img');
+      var track = field.parentElement;
+      if (!img || !img.naturalWidth || !track) return null;
+      var ir = img.getBoundingClientRect();
+      var tr = track.getBoundingClientRect();
+      if (!ir.height || !tr.height) return null;
+      var aspect = img.naturalWidth / img.naturalHeight;
+      var contain = getComputedStyle(img).objectFit === 'contain';
+      var renderedH = contain
+        ? Math.min(ir.height, ir.width / aspect)
+        : Math.max(ir.height, ir.width / aspect);
+      var artworkTop = ir.bottom - renderedH;          // slika je poravnata po dnu
+      var buildingTopY = artworkTop + renderedH * 0.216;  // izmereno na hero-skyline.png
+      return (tr.bottom - buildingTopY) / tr.height * 100;
+    }
+
     function buildStars(){
       field.innerHTML = '';
-      // object-fit:cover crops the skyline image differently depending on the
-      // hero's own aspect ratio (a short/wide window crops away more of the top
-      // "sky" than a tall/narrow one), so a fixed % band only clears the
-      // buildings for one particular window shape. On desktop we instead compute
-      // where the tallest spire actually lands, from the image's real proportions
-      // and the hero's current size, so it works at any window width/height.
-      var isDesktop = window.innerWidth > 780;
-      var buildingTopPct = 78; // safe high fallback for a typical desktop crop
-      if (isDesktop){
-        var heroEl = document.getElementById('heroZone');
-        var skyImg = document.querySelector('.hero-skyline-img');
-        if (heroEl && skyImg && skyImg.naturalWidth && heroEl.clientHeight){
-          var cw = heroEl.clientWidth, ch = heroEl.clientHeight;
-          var iw = skyImg.naturalWidth, ih = skyImg.naturalHeight;
-          var scale = Math.max(cw / iw, ch / ih); // object-fit:cover scale factor
-          var scaledH = ih * scale;
-          var visibleFrac = Math.min(1, ch / scaledH); // fraction of the image's height still visible after the cover-crop
-          // measured directly on hero-skyline.png: the topmost building/spire pixel
-          // sits 21.6% down from the image's top, i.e. 78.4% up from its bottom
-          var buildingTopFracOfImage = 0.784;
-          var renderedFrac = buildingTopFracOfImage / visibleFrac; // where that line lands as a % of the rendered (cropped) hero height
-          buildingTopPct = Math.min(92, renderedFrac * 100);
-        }
+      var pct = buildingTopPct();
+      var donja, raspon;
+      if (pct === null){
+        donja = window.innerWidth > 780 ? 84 : 34;   // rezerva ako slika jos nije ucitana
+        raspon = 10;
+      } else {
+        donja = Math.min(pct + 3, 92);               // tik iznad najviseg tornja
+        raspon = 12;
       }
       for (var i = 0; i < count; i++){
-        // measured from the bottom (where the buildings/car sit) so the stars land
-        // just above the skyline on every screen size, instead of a fixed % of the
-        // whole (much taller, on phones) hero section
-        var bottom = isDesktop ? (buildingTopPct + 6 + Math.random() * 10) : (Math.random() * 14 + 20);  // desktop: just above the measured building line, mobile: ~20%-34% up from the bottom
-        var left = Math.random() * 50;         // one building copy's share of the double-width track
-        var size = (Math.random() * 1.6 + 0.8).toFixed(1);
-        var dur = (Math.random() * 4 + 3).toFixed(1);
-        var delay = (Math.random() * 5).toFixed(1);
-        makeStar(left, bottom, size, dur, delay);
-        makeStar(left + 50, bottom, size, dur, delay);
+        var sd = seeds[i];
+        var bottom = donja + sd.t * raspon;
+        makeStar(sd.left, bottom, sd.size, sd.dur, sd.delay);
+        makeStar(sd.left + 50, bottom, sd.size, sd.dur, sd.delay);
       }
     }
+
     var firstImg = document.querySelector('.hero-skyline-img');
     if (firstImg && firstImg.complete && firstImg.naturalWidth){
       buildStars();
     } else if (firstImg){
       firstImg.addEventListener('load', buildStars, { once: true });
-      // fallback in case the load event is missed (e.g. cached edge case)
       setTimeout(buildStars, 1200);
     } else {
       buildStars();
     }
-    // re-measure if the window is resized/rotated to a very different shape
+
+    // Na telefonu se visina prozora menja cim se adresna traka skupi ili rašiрi,
+    // pa bi se zvezde inace premestale na svaki dodir ekrana. Zato reagujemo
+    // samo na stvarnu promenu sirine (rotacija, promena velicine prozora).
+    var lastW = window.innerWidth;
     var resizeTimer;
-    window.addEventListener('resize', function(){
+    function mozdaPregradi(){
+      if (Math.abs(window.innerWidth - lastW) < 2) return;
+      lastW = window.innerWidth;
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(buildStars, 300);
+    }
+    window.addEventListener('resize', mozdaPregradi);
+    window.addEventListener('orientationchange', function(){
+      lastW = -1;
+      mozdaPregradi();
     });
   })();
 
